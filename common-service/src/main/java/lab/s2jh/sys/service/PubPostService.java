@@ -27,4 +27,5 @@ public class PubPostService extends BaseService<PubPost, String> {
     public List<PubPost> findPublished() {
         return pubPostDao.findPublished(new Date());
     }
+  
 }

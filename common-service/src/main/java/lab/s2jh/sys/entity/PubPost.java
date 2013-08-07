@@ -61,6 +61,7 @@ public class PubPost extends BaseEntity<String> {
         return htmlTitle;
     }
 
+    @Column(nullable=false)
     public String getHtmlTitle() {
         return htmlTitle;
     }

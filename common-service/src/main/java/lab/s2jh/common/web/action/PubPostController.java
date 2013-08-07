@@ -34,8 +34,8 @@ public class PubPostController extends BaseController<PubPost,String> {
     }
 
     @Override
-    @MetaData(title = "查询")
-    public HttpHeaders findByPage() {
-        return super.findByPage();
+    @MetaData(title = "查看")
+    public HttpHeaders view() {
+        return buildDefaultHttpHeaders("view");
     }
 }

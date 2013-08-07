@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PubPostDao extends BaseDao<PubPost, String> {
 
-    @Query("from PubPost t where t.publishTime is null and t.publishTime<:currentDate and (t.expireTime>:currentDate or t.expireTime is null) order by t.publishTime desc")
+    @Query("from PubPost t where t.publishTime is not null and t.publishTime<:currentDate and (t.expireTime>:currentDate or t.expireTime is null) order by t.publishTime desc")
     List<PubPost> findPublished(@Param("currentDate") Date currentDate);
 }
