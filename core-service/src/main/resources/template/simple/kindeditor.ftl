@@ -11,7 +11,10 @@ $(function() {
         uploadJson : '${request.contextPath}/components/kindeditor/4.1.7/jsp/upload_json.jsp',
         fileManagerJson : '${request.contextPath}/components/kindeditor/4.1.7/jsp/file_manager_json.jsp',
         allowFileManager : false,
-        width: '100%'
+        width: '100%',
+        afterBlur : function() {
+            this.sync();
+        }
     },${parameters.options?default("{}")?string}));
 })
 </script>
