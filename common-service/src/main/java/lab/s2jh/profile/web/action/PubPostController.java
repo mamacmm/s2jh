@@ -75,8 +75,9 @@ public class PubPostController extends BaseController<PubPost, String> {
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
         List<PubPost> pubPosts = pubPostService.findPublished();
-
+        List<PubPost> notifyList = Lists.newArrayList();
         if (CollectionUtils.isNotEmpty(pubPosts)) {
+            @SuppressWarnings("unchecked")
             Map<Serializable, Boolean> idMaps = (Map<Serializable, Boolean>) session.getAttribute(READED_PUB_POST_IDS);
             if (idMaps == null) {
                 idMaps = Maps.newHashMap();
@@ -104,15 +105,14 @@ public class PubPostController extends BaseController<PubPost, String> {
                     }
                 }
             }
-
-            List<PubPost> notifyList = Lists.newArrayList();
+            
             for (PubPost pubPost : pubPosts) {
                 if (Boolean.FALSE.equals(idMaps.get(pubPost.getId()))) {
                     notifyList.add(pubPost);
                 }
             }
-            setModel(notifyList);
         }
+        setModel(notifyList);
         return buildDefaultHttpHeaders("list");
     }
 
@@ -141,6 +141,7 @@ public class PubPostController extends BaseController<PubPost, String> {
         pubPostService.save(bindingEntity);
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
         Map<Serializable, Boolean> idMaps = (Map<Serializable, Boolean>) session.getAttribute(READED_PUB_POST_IDS);
         idMaps.put(bindingEntity.getId(), Boolean.TRUE);
         return buildDefaultHttpHeaders("view");

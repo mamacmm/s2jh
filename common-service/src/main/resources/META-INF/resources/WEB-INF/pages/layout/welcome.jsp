@@ -8,8 +8,22 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="hero-unit">Welcome...</div>
+		<div class="hero-unit">A Java/J2EE development framework for enterprise system based on
+			Struts/Spring/JPA/Hibernate and jquery/bootstrap</div>
+		<div class="row-fluid">
+			<div class="well">
+				<fieldset>
+					<legend>最新公告</legend>
+					<div id="pubPostListShow"></div>
+				</fieldset>
+			</div>
+		</div>
 	</div>
 	<%@ include file="/common/index-footer.jsp"%>
+	<script>
+        $(function() {
+            $("#pubPostListShow").ajaxGetUrl("${base}/profile/pub-post!list");
+        });
+    </script>
 </body>
 </html>

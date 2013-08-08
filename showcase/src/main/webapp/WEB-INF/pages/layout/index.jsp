@@ -386,7 +386,7 @@ ul.marquee li {
                         alert('系统检测到请求异常，请尝试刷新页面');
                     }
                 });
-            }, 10000);
+            }, 5*60*1000);
 
             $("#marquee").delegate("li", "click", function() {
                 var id = $(this).attr("id");
