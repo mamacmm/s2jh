@@ -21,6 +21,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "T_SYS_PUB_POST_READ", uniqueConstraints = @UniqueConstraint(columnNames = { "pub_post_id",
         "read_user_id" }))
@@ -70,6 +72,7 @@ public class PubPostRead extends BaseEntity<String> {
 
     @ManyToOne
     @JoinColumn(name = "pub_post_id", nullable = false)
+    @JsonIgnore
     public PubPost getPubPost() {
         return pubPost;
     }
@@ -80,12 +83,18 @@ public class PubPostRead extends BaseEntity<String> {
 
     @ManyToOne
     @JoinColumn(name = "read_user_id", nullable = false)
+    @JsonIgnore
     public User getReadUser() {
         return readUser;
     }
 
     public void setReadUser(User readUser) {
         this.readUser = readUser;
+    }
+
+    @Transient
+    public String getReadUserLabel() {
+        return readUser.getDisplayLabel();
     }
 
     @Column(nullable = false)

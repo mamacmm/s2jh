@@ -14,6 +14,7 @@ import lab.s2jh.sys.entity.PubPostRead;
 import lab.s2jh.sys.service.PubPostReadService;
 import lab.s2jh.sys.service.PubPostService;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,17 +43,20 @@ public class PubPostController extends BaseController<PubPost, String> {
     @MetaData(title = "公告列表")
     public HttpHeaders list() {
         List<PubPost> pubPosts = pubPostService.findPublished();
-        User user = userService.findByUid(AuthContextHolder.getAuthUserDetails().getUid());
-        List<PubPostRead> pubPostReads = pubPostReadService.findReaded(user, pubPosts);
-        for (PubPost pubPost : pubPosts) {
-            for (PubPostRead pubPostRead : pubPostReads) {
-                if (pubPostRead.getPubPost().equals(pubPost)) {
-                    pubPost.addExtraAttribute("readed", true);
-                    break;
+        if (CollectionUtils.isNotEmpty(pubPosts)) {
+            User user = userService.findByUid(AuthContextHolder.getAuthUserDetails().getUid());
+            List<PubPostRead> pubPostReads = pubPostReadService.findReaded(user, pubPosts);
+            for (PubPost pubPost : pubPosts) {
+                pubPost.addExtraAttribute("readed", false);
+                for (PubPostRead pubPostRead : pubPostReads) {
+                    if (pubPostRead.getPubPost().equals(pubPost)) {
+                        pubPost.addExtraAttribute("readed", true);
+                        break;
+                    }
                 }
             }
+            setModel(pubPosts);
         }
-        setModel(pubPosts);
         return buildDefaultHttpHeaders("list");
     }
 
@@ -67,10 +71,18 @@ public class PubPostController extends BaseController<PubPost, String> {
             pubPostRead.setReadTotalCount(1);
             pubPostRead.setReadUser(user);
             pubPostRead.setPubPost(bindingEntity);
+
+            if (bindingEntity.getReadUserCount() == null) {
+                bindingEntity.setReadUserCount(1);
+            } else {
+                bindingEntity.setReadUserCount(bindingEntity.getReadUserCount() + 1);
+            }
         } else {
             pubPostRead.setLastReadTime(new Date());
             pubPostRead.setReadTotalCount(pubPostRead.getReadTotalCount() + 1);
         }
+        pubPostReadService.save(pubPostRead);
+        pubPostService.save(bindingEntity);
         return buildDefaultHttpHeaders("view");
     }
 }

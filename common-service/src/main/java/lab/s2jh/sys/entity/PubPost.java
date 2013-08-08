@@ -41,6 +41,10 @@ public class PubPost extends BaseEntity<String> {
     @EntityAutoCode(order = 40)
     private String htmlContent;
 
+    @MetaData(title = "总计查看用户数")
+    @EntityAutoCode(order = 50)
+    private Integer readUserCount;
+
     private String id;
 
     @Id
@@ -61,7 +65,7 @@ public class PubPost extends BaseEntity<String> {
         return htmlTitle;
     }
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     public String getHtmlTitle() {
         return htmlTitle;
     }
@@ -93,5 +97,13 @@ public class PubPost extends BaseEntity<String> {
 
     public void setPublishTime(Date publishTime) {
         this.publishTime = publishTime;
+    }
+
+    public Integer getReadUserCount() {
+        return readUserCount;
+    }
+
+    public void setReadUserCount(Integer readUserCount) {
+        this.readUserCount = readUserCount;
     }
 }
