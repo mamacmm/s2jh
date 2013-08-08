@@ -28,4 +28,8 @@ public class PubPostReadService extends BaseService<PubPostRead,String>{
     public List<PubPostRead> findReaded(User readUser,List<PubPost> pubPosts){
         return pubPostReadDao.findReaded(readUser, pubPosts);
     }
+    
+    public PubPostRead findReaded(User readUser,PubPost pubPost){
+        return pubPostReadDao.findByReadUserAndPubPost(readUser, pubPost);
+    }
 }

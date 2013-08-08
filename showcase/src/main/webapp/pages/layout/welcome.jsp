@@ -22,7 +22,7 @@
 	<%@ include file="/common/index-footer.jsp"%>
 	<script>
         $(function() {
-            $("#pubPostListShow").ajaxGetUrl("${base}/pub/pub-post!list");
+            $("#pubPostListShow").ajaxGetUrl("${base}/profile/pub-post!list");
         });
     </script>
 </body>

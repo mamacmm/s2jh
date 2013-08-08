@@ -16,4 +16,6 @@ public interface PubPostReadDao extends BaseDao<PubPostRead, String> {
 
     @Query("from PubPostRead t where t.readUser=:readUser and t.pubPost in (:pubPosts)")
     List<PubPostRead> findReaded(@Param("readUser") User readUser, @Param("pubPosts") List<PubPost> pubPosts);
+
+    PubPostRead findByReadUserAndPubPost(User readUser, PubPost pubPost);
 }

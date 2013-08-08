@@ -1,11 +1,11 @@
 package lab.s2jh.sys.web.action;
 
 import lab.s2jh.core.annotation.MetaData;
-import lab.s2jh.sys.entity.PubPost;
-import lab.s2jh.sys.service.PubPostService;
 import lab.s2jh.core.service.BaseService;
 import lab.s2jh.core.web.BaseController;
 import lab.s2jh.core.web.view.OperationResult;
+import lab.s2jh.sys.entity.PubPost;
+import lab.s2jh.sys.service.PubPostService;
 
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,8 @@ public class PubPostController extends BaseController<PubPost,String> {
 
     @Autowired
     private PubPostService pubPostService;
+    
+    
 
     @Override
     protected BaseService<PubPost, String> getEntityService() {

@@ -17,8 +17,8 @@ import com.google.common.collect.Sets;
 @ContextConfiguration(locations = { "classpath:/context/spring*.xml" })
 public class PubPostServiceTest extends SpringTransactionalTestCase {
 
-	@Autowired
-	private PubPostService pubPostService;
+    @Autowired
+    private PubPostService pubPostService;
 
     @Test
     public void findByPage() {
@@ -31,7 +31,7 @@ public class PubPostServiceTest extends SpringTransactionalTestCase {
         List<PubPost> items = pubPostService.findAll(Sets.newHashSet(entity.getId()));
         Assert.assertTrue(items.size() >= 1);
     }
-    
+
     @Test
     public void findPublished() {
         //Insert mock entity
@@ -39,7 +39,26 @@ public class PubPostServiceTest extends SpringTransactionalTestCase {
         pubPostService.save(entity);
         Assert.assertTrue(entity.getId() != null);
 
-    
+        logger.debug("1........");
+        pubPostService.findPublished();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        logger.debug("2........");
+        pubPostService.findPublished();
+        
+        entity.setHtmlTitle("ABC");
+        pubPostService.save(entity);
+        entityManager.flush();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        logger.debug("3........");
         pubPostService.findPublished();
     }
 }
