@@ -9,6 +9,38 @@
 <script src="${base}/components/jquery-xtabpanel/2.0/xTabPanel.js?_=${buildVersion}"></script>
 <link rel="stylesheet" type="text/css"
 	href="${base}/components/jquery-xtabpanel/2.0/xTabPanel.css?_=${buildVersion}">
+
+<script src="${base}/components/jquery.marquee/1.0.01/lib/jquery.marquee.js?_=${buildVersion}"></script>
+<style type="text/css">
+ul.marquee {
+	/* required styles */
+	display: block;
+	padding: 2px;
+	margin-top: 5px;
+	list-style: none;
+	line-height: 1;
+	position: relative;
+	overflow: hidden;
+	/* optional styles for appearance */
+	width: 300px;
+	height: 20px;
+	/* height should be included to reserve visual space for the marquee */
+	border: 0px;
+}
+
+ul.marquee li {
+	/* required styles */
+	position: absolute;
+	top: -999em;
+	left: 0;
+	display: block;
+	white-space: nowrap; /* keep all text on a single line */
+	/* optional styles for appearance */
+	font: 14px Arial, Helvetica, sans-serif;
+	padding: 3px 5px;
+}
+</style>
+
 </head>
 <body>
 
@@ -30,9 +62,11 @@
 		<div class="navbar">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href='javascript:void(0)' onclick="window.location.reload()">&nbsp;<s:property value="%{systemTitle}" /></a>
+					<a class="brand" href='javascript:void(0)' onclick="window.location.reload()">&nbsp;<s:property
+							value="%{systemTitle}" /></a>
 					<div class="nav-collapse collapse navbar-responsive-collapse">
 						<ul class="nav pull-right">
+							<li class="divider-vertical"></li>
 							<li><a href="javascript:void(0)"><s:property value="%{authUserDetails.username}" /></a></li>
 							<li><a href="javascript:void(0)" id="switchLayout"><i class="icon-fullscreen"></i>
 									切换显示</a></li>
@@ -42,6 +76,9 @@
 								onclick="if(confirm('确认注销登录吗？')){window.location.href='${base}/j_spring_security_logout';}">
 									<i class="icon-off"></i> 注销登录
 							</a></li>
+						</ul>
+						<ul class="marquee pull-right" id="marquee">
+						     <li><a href="javascript:void(0)">AAA</a></li>
 						</ul>
 					</div>
 					<!-- /.nav-collapse -->
@@ -61,8 +98,8 @@
 				<span id="messageBar">&nbsp;</span>
 			</div>
 			<div class="span2">
-			    <div style="line-height: 15px"><%@ include file="/common/app-ver.jsp"%></div>
-			 </div>
+				<div style="line-height: 15px"><%@ include file="/common/app-ver.jsp"%></div>
+			</div>
 			<div class="span2">
 				<div id="timerDisplayBar" class="pull-right" style="line-height: 15px"></div>
 			</div>
@@ -306,6 +343,17 @@
                     height : 350
                 })
             })
+
+            setInterval(function() {
+                $("#marquee").html("");
+                $("#marquee").append($('<i class="icon-volume-down"></i>'));
+                $("#marquee").append($('<li><a href="javascript:void(0)">AAA22</a></li>'));
+                $("#marquee").append($('<li><a href="javascript:void(0)">BBB22</a></li>'));
+                $("#marquee").marquee("update");
+                //alert($("#marquee").find("> li").length);
+            }, 1000);
+
+            $("#marquee").marquee();
         });
 
         //系统时间显示
