@@ -8,6 +8,8 @@ import lab.s2jh.core.service.BaseService;
 import lab.s2jh.sys.dao.PubPostDao;
 import lab.s2jh.sys.entity.PubPost;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class PubPostService extends BaseService<PubPost, String> {
+
+    private final Logger logger = LoggerFactory.getLogger(PubPostService.class);
 
     @Autowired
     private PubPostDao pubPostDao;
@@ -28,6 +32,7 @@ public class PubPostService extends BaseService<PubPost, String> {
 
     @Cacheable("PubPostSpringCache")
     public List<PubPost> findPublished() {
+        logger.debug("Finding published post message...");
         return pubPostDao.findPublished(new Date());
     }
 
