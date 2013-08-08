@@ -1,7 +1,12 @@
 package lab.s2jh.profile.web.action;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import lab.s2jh.auth.entity.User;
 import lab.s2jh.auth.service.UserService;
@@ -15,11 +20,17 @@ import lab.s2jh.sys.service.PubPostReadService;
 import lab.s2jh.sys.service.PubPostService;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 @MetaData(title = "公告消息显示")
 public class PubPostController extends BaseController<PubPost, String> {
+
+    private final static String READED_PUB_POST_IDS = "READED_PUB_POST_IDS";
 
     @Autowired
     private PubPostService pubPostService;
@@ -60,6 +71,51 @@ public class PubPostController extends BaseController<PubPost, String> {
         return buildDefaultHttpHeaders("list");
     }
 
+    public HttpHeaders messages() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpSession session = request.getSession();
+        List<PubPost> pubPosts = pubPostService.findPublished();
+
+        if (CollectionUtils.isNotEmpty(pubPosts)) {
+            Map<Serializable, Boolean> idMaps = (Map<Serializable, Boolean>) session.getAttribute(READED_PUB_POST_IDS);
+            if (idMaps == null) {
+                idMaps = Maps.newHashMap();
+                session.setAttribute(READED_PUB_POST_IDS, idMaps);
+            }
+
+            boolean needRetriveReads = false;
+            for (PubPost pubPost : pubPosts) {
+                if (!idMaps.containsKey(pubPost.getId())) {
+                    needRetriveReads = true;
+                    break;
+                }
+            }
+
+            if (needRetriveReads) {
+                User user = userService.findByUid(AuthContextHolder.getAuthUserDetails().getUid());
+                List<PubPostRead> pubPostReads = pubPostReadService.findReaded(user, pubPosts);
+                for (PubPost pubPost : pubPosts) {
+                    idMaps.put(pubPost.getId(), Boolean.FALSE);
+                    for (PubPostRead pubPostRead : pubPostReads) {
+                        if (pubPostRead.getPubPost().equals(pubPost)) {
+                            idMaps.put(pubPost.getId(), Boolean.TRUE);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            List<PubPost> notifyList = Lists.newArrayList();
+            for (PubPost pubPost : pubPosts) {
+                if (Boolean.FALSE.equals(idMaps.get(pubPost.getId()))) {
+                    notifyList.add(pubPost);
+                }
+            }
+            setModel(notifyList);
+        }
+        return buildDefaultHttpHeaders("list");
+    }
+
     @Override
     @MetaData(title = "查看")
     public HttpHeaders view() {
@@ -83,6 +139,10 @@ public class PubPostController extends BaseController<PubPost, String> {
         }
         pubPostReadService.save(pubPostRead);
         pubPostService.save(bindingEntity);
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpSession session = request.getSession();
+        Map<Serializable, Boolean> idMaps = (Map<Serializable, Boolean>) session.getAttribute(READED_PUB_POST_IDS);
+        idMaps.put(bindingEntity.getId(), Boolean.TRUE);
         return buildDefaultHttpHeaders("view");
     }
 }

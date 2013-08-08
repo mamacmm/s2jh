@@ -16,7 +16,7 @@ ul.marquee {
 	/* required styles */
 	display: block;
 	padding: 2px;
-	margin-top: 5px;
+	margin-top: 3px;
 	list-style: none;
 	line-height: 1;
 	position: relative;
@@ -78,7 +78,8 @@ ul.marquee li {
 							</a></li>
 						</ul>
 						<ul class="marquee pull-right" id="marquee">
-						     <li><a href="javascript:void(0)">AAA</a></li>
+							<i class="icon-volume-down" style="display: none"></i>
+							<li><a href="javascript:void(0)" class="hide">暂无最新公告</a></li>
 						</ul>
 					</div>
 					<!-- /.nav-collapse -->
@@ -344,14 +345,53 @@ ul.marquee li {
                 })
             })
 
-            setInterval(function() {
-                $("#marquee").html("");
-                $("#marquee").append($('<i class="icon-volume-down"></i>'));
-                $("#marquee").append($('<li><a href="javascript:void(0)">AAA22</a></li>'));
-                $("#marquee").append($('<li><a href="javascript:void(0)">BBB22</a></li>'));
-                $("#marquee").marquee("update");
-                //alert($("#marquee").find("> li").length);
-            }, 1000);
+            var timer = setInterval(function() {
+                var $marquee = $("#marquee");
+                var $lis = $marquee.find("> li");
+
+                $.ajax({
+                    type : "GET",
+                    dataType : "json",
+                    url : "${base}/profile/pub-post!messages",
+                    success : function(data) {
+                        $marquee.find("> li").each(function() {
+                            var id = $(this).attr("id");
+                            if (id) {
+                                var needRemove = true;
+                                $.each(data, function(i, item) {
+                                    if (item.id == id) {
+                                        needRemove = false;
+                                    }
+                                });
+                                if (needRemove) {
+                                    $(this).remove();
+                                }
+                            }
+                        });
+
+                        $.each(data, function(i, item) {
+                            if ($marquee.find("> li[id='" + item.id + "']").length == 0) {
+                                $marquee.append($('<li id="'+item.id+'"><a href="javascript:void(0)">' + item.htmlTitle + '</a></li>'));
+                            }
+                        });
+                        if ($marquee.find("> li[id]").length == 0) {
+                            $marquee.find("> i").hide();
+                        } else {
+                            $marquee.find("> i").show();
+                        }
+                        $marquee.marquee("update");
+                    },
+                    error : function(XMLHttpRequest, textStatus, errorThrown) {
+                        clearInterval(timer);
+                        alert('系统检测到请求异常，请尝试刷新页面');
+                    }
+                });
+            }, 10000);
+
+            $("#marquee").delegate("li", "click", function() {
+                var id = $(this).attr("id");
+                $.popupViewDialog('${base}/profile/pub-post!view?id=' + id);
+            });
 
             $("#marquee").marquee();
         });
