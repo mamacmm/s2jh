@@ -30,7 +30,6 @@
     String errorMessage = errorTitle + "系统运行错误，请联系管理员！";
     if (e instanceof lab.s2jh.core.exception.DuplicateTokenException) {
         errorMessage = "请勿快速重复提交表单";
-        skipLog = true;
     } else if (e instanceof lab.s2jh.core.exception.BaseRuntimeException) {
         errorMessage = errorTitle + e.getMessage();
     } else if (e instanceof org.springframework.dao.DataIntegrityViolationException) {
