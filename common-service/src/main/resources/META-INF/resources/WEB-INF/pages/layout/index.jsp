@@ -10,13 +10,15 @@
 <link rel="stylesheet" type="text/css"
 	href="${base}/components/jquery-xtabpanel/2.0/xTabPanel.css?_=${buildVersion}">
 
+<script src="${base}/components/jquery-address/1.5/jquery.address-1.5.js?_=${pageScope.buildVersion}"></script>
+
 <script src="${base}/components/jquery.marquee/1.0.01/lib/jquery.marquee.js?_=${buildVersion}"></script>
 <style type="text/css">
 ul.marquee {
 	/* required styles */
 	display: block;
 	padding: 2px;
-	margin-top: 3px;
+	margin-top: 2px;
 	list-style: none;
 	line-height: 1;
 	position: relative;
@@ -28,6 +30,10 @@ ul.marquee {
 	border: 0px;
 }
 
+ul.marquee i {
+    margin-top: 5px;
+}
+
 ul.marquee li {
 	/* required styles */
 	position: absolute;
@@ -35,8 +41,6 @@ ul.marquee li {
 	left: 0;
 	display: block;
 	white-space: nowrap; /* keep all text on a single line */
-	/* optional styles for appearance */
-	font: 14px Arial, Helvetica, sans-serif;
 	padding: 3px 5px;
 }
 </style>
@@ -257,6 +261,52 @@ ul.marquee li {
             window.clearInterval(window.thread);
             $('#progressBar').progressbar('option', 'value', 0);
         }
+        
+        //更新公告
+        function updatePubPost() {
+            var $marquee = $("#marquee");
+            var $lis = $marquee.find("> li");
+
+            $.ajax({
+                type : "GET",
+                dataType : "json",
+                url : "${base}/profile/pub-post!messages",
+                success : function(data) {
+                    $marquee.find("> li").each(function() {
+                        var id = $(this).attr("id");
+                        if (id) {
+                            var needRemove = true;
+                            $.each(data, function(i, item) {
+                                if (item.id == id) {
+                                    needRemove = false;
+                                }
+                            });
+                            if (needRemove) {
+                                $(this).remove();
+                            }
+                        }
+                    });
+
+                    $.each(data, function(i, item) {
+                        if ($marquee.find("> li[id='" + item.id + "']").length == 0) {
+                            $marquee.append($('<li id="'+item.id+'"><a href="javascript:void(0)">' + item.publishTime +' ' + item.htmlTitle + '</a></li>'));
+                        }
+                    });
+                    $marquee.marquee("update");
+                    if ($marquee.find("> li[id]").length == 0) {
+                        $marquee.find("> i").hide();
+                    } else {
+                        $marquee.find("> i").show();
+                    }
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown) {
+                    if(window.pubPostTimer){
+                        clearInterval(window.pubPostTimer);
+                    }                    
+                    alert('系统检测到请求异常，请尝试刷新页面');
+                }
+            });
+        };
 
         /*
          *#######################
@@ -336,57 +386,11 @@ ul.marquee li {
             })
 
             $("#changePasswd").click(function() {
-                $.popupDialog({
-                    dialogId : 'changePasswdDialog',
-                    url : "${base}/auth/profile!passwd",
-                    title : "修改登录密码",
-                    width : 600,
-                    height : 350
-                })
+                $.address.value("123");
             })
 
-            var timer = setInterval(function() {
-                var $marquee = $("#marquee");
-                var $lis = $marquee.find("> li");
-
-                $.ajax({
-                    type : "GET",
-                    dataType : "json",
-                    url : "${base}/profile/pub-post!messages",
-                    success : function(data) {
-                        $marquee.find("> li").each(function() {
-                            var id = $(this).attr("id");
-                            if (id) {
-                                var needRemove = true;
-                                $.each(data, function(i, item) {
-                                    if (item.id == id) {
-                                        needRemove = false;
-                                    }
-                                });
-                                if (needRemove) {
-                                    $(this).remove();
-                                }
-                            }
-                        });
-
-                        $.each(data, function(i, item) {
-                            if ($marquee.find("> li[id='" + item.id + "']").length == 0) {
-                                $marquee.append($('<li id="'+item.id+'"><a href="javascript:void(0)">' + item.htmlTitle + '</a></li>'));
-                            }
-                        });
-                        if ($marquee.find("> li[id]").length == 0) {
-                            $marquee.find("> i").hide();
-                        } else {
-                            $marquee.find("> i").show();
-                        }
-                        $marquee.marquee("update");
-                    },
-                    error : function(XMLHttpRequest, textStatus, errorThrown) {
-                        clearInterval(timer);
-                        alert('系统检测到请求异常，请尝试刷新页面');
-                    }
-                });
-            }, 5*60*1000);
+            window.pubPostTimer = setInterval(updatePubPost, 5 * 60 * 1000);
+            updatePubPost();
 
             $("#marquee").delegate("li", "click", function() {
                 var id = $(this).attr("id");

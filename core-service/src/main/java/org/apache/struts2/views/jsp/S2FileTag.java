@@ -7,36 +7,38 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
-import org.apache.struts2.components.Property;
-import org.apache.struts2.dispatcher.Dispatcher;
+import org.apache.struts2.components.Component;
+import org.apache.struts2.components.File;
 
-import com.opensymphony.xwork2.inject.Container;
+import com.opensymphony.xwork2.util.ValueStack;
 import com.opensymphony.xwork2.util.logging.Logger;
 import com.opensymphony.xwork2.util.logging.LoggerFactory;
 
 /**
- * 扩展标准的s:property标签，生成Bootstrap样式的属性数据显示
+ * 生成基于自定义的附件文件对象的显示和下载链接
+ * 示例：<s2:file value="r2File" label="关联附件"/>
  */
-public class S2PropertyTag extends PropertyTag {
+public class S2FileTag extends ComponentTagSupport {
 
-    private static final Logger LOG = LoggerFactory.getLogger(S2PropertyTag.class);
+    private static final Logger LOG = LoggerFactory.getLogger(S2FileTag.class);
 
     /** Bootstrap样式label属性定义 */
     private String label;
 
-    protected void populateParams() {
-        super.populateParams();
-        Property uiBean = ((Property) component);
+    /** 返回附件对象实例   @see File.FileDef  */
+    private String value;
+
+    public Component getBean(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new File(stack);
     }
 
-    public int doStartTag() throws JspException {
-        component = getBean(getStack(), (HttpServletRequest) pageContext.getRequest(),
-                (HttpServletResponse) pageContext.getResponse());
-        Container container = Dispatcher.getInstance().getContainer();
-        container.inject(component);
+    protected void populateParams() {
+        super.populateParams();
+        File uiBean = ((File) component);
+        uiBean.setValue(value);
+    }
 
-        populateParams();
-
+    public int doEndTag() throws JspException {
         JspWriter writer = pageContext.getOut();
         if (label != null) {
             try {
@@ -49,7 +51,7 @@ public class S2PropertyTag extends PropertyTag {
                 }
             }
         }
-        boolean evalBody = component.start(writer);
+        component.end(writer, getBody());
         if (label != null) {
             try {
                 writer.write("</div></div>");
@@ -59,14 +61,15 @@ public class S2PropertyTag extends PropertyTag {
                 }
             }
         }
-        if (evalBody) {
-            return component.usesBody() ? EVAL_BODY_BUFFERED : EVAL_BODY_INCLUDE;
-        } else {
-            return SKIP_BODY;
-        }
+        component = null;
+        return EVAL_PAGE;
     }
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }
