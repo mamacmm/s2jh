@@ -33,9 +33,9 @@ public class S2KindEditorTag extends TextareaTag {
 
         if (StringUtils.isNotBlank(items)) {
             if ("simple".equals(items)) {
-                items = "['fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',"
+                items = "['source', '|', 'undo', 'redo', '|', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',"
                         + "'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',"
-                        + "'insertunorderedlist', '|', 'emoticons', 'image', 'link']";
+                        + "'insertunorderedlist']";
             }
             dynamicAttributes.put("items", items);
         }
