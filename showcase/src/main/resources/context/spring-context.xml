@@ -87,5 +87,6 @@
 
 	<!-- Spring Task/Async异步支持配置 -->
 	<bean id="handlingAsyncTaskExecutor" class="lab.s2jh.core.context.async.HandlingAsyncTaskExecutor" />
-	<task:annotation-driven executor="handlingAsyncTaskExecutor" />
+	<task:annotation-driven executor="handlingAsyncTaskExecutor" scheduler="springScheduler"/>
+	<task:scheduler id="springScheduler" pool-size="10" />
 </beans>

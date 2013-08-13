@@ -19,7 +19,7 @@ public class PubPostServiceTimer {
     @Autowired
     private PubPostService pubPostService;
 
-    @Scheduled(fixedRate = 300000)
+    @Scheduled(cron = "*/5 * * * * ?")
     public void cacheRefresh() {
         logger.debug("Timely check and refresh PubPost spring cache...");
         List<PubPost> items = pubPostService.findPublished();
