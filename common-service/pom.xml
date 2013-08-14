@@ -12,7 +12,6 @@
 	<packaging>jar</packaging>
 	<name>s2jh :: module :: common</name>
 
-
 	<dependencies>
 		<!-- j2ee web spec -->
 		<dependency>

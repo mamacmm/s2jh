@@ -8,7 +8,6 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +18,6 @@ public class PubPostServiceTimer {
     @Autowired
     private PubPostService pubPostService;
 
-    @Scheduled(cron = "*/5 * * * * ?")
     public void cacheRefresh() {
         logger.debug("Timely check and refresh PubPost spring cache...");
         List<PubPost> items = pubPostService.findPublished();
