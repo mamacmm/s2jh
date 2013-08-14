@@ -153,12 +153,6 @@
 		</dependency>
 		<!-- Security end -->
 
-		<!-- quartz -->
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-		</dependency>
-
 		<!-- UTILS begin -->
 		<dependency>
 			<groupId>xml-apis</groupId>
