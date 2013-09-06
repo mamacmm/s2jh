@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import lab.s2jh.auth.entity.Privilege;
+import lab.s2jh.auth.service.PrivilegeService;
 import lab.s2jh.core.dao.BaseDao;
 import lab.s2jh.core.service.BaseService;
 import lab.s2jh.rpt.dao.ReportDefDao;
@@ -42,6 +44,9 @@ public class MenuService extends BaseService<Menu, String> {
 
     @Autowired
     private ReportDefDao reportDefDao;
+
+    @Autowired
+    private PrivilegeService privilegeService;
 
     @Autowired
     private SecurityMetadataSource securityMetadataSource;
@@ -262,6 +267,38 @@ public class MenuService extends BaseService<Menu, String> {
         }
 
         return filteredMenuVOs;
+    }
+
+    @Override
+    public Menu save(Menu entity) {
+        if (entity.isNew()) {
+            String url = entity.getUrl();
+            if (StringUtils.isNotBlank(url) && url.startsWith("/")) {
+                if (privilegeService.findByProperty("url", url) == null) {
+                    Privilege privilege = new Privilege();
+                    privilege.setCategory("菜单权限");
+                    privilege.setType("MENU");
+                    privilege.setCode("P" + entity.getCode());
+                    privilege.setTitle(entity.getTitle());
+                    privilege.setDescription("创建菜单自动创建对应权限");
+                    privilege.setUrl(entity.getUrl());
+                    privilegeService.save(privilege);
+                }
+            }
+        }
+        return super.save(entity);
+    }
+
+    @Override
+    public void delete(Menu entity) {
+        String url = entity.getUrl();
+        if (StringUtils.isNotBlank(url)) {
+            Privilege privilege = privilegeService.findByProperty("url", url);
+            if (privilege != null) {
+                privilegeService.delete(privilege);
+            }
+        }
+        super.delete(entity);
     }
 
 }

@@ -37,6 +37,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -156,12 +157,16 @@ public class UserController extends BaseController<User, String> {
     public HttpHeaders findByPage() {
         GroupPropertyFilter groupFilter = GroupPropertyFilter
                 .buildGroupFilterFromHttpRequest(entityClass, getRequest());
-        Collection<String> aclCodePrefixs = AuthContextHolder.getAuthUserDetails().getAclCodePrefixs();
-        groupFilter.and(new PropertyFilter(MatchType.ACLPREFIXS, "aclCode", aclCodePrefixs));
-        Integer authUserAclType = AuthContextHolder.getAuthUserDetails().getAclType();
-        if (authUserAclType != null) {
-            groupFilter.and(new PropertyFilter(MatchType.LE, "aclType", authUserAclType));
-        }
+        if (AuthContextHolder.getAuthUserDetails() != null) {
+            Collection<String> aclCodePrefixs = AuthContextHolder.getAuthUserDetails().getAclCodePrefixs();
+            if (!CollectionUtils.isEmpty(aclCodePrefixs)) {
+                groupFilter.and(new PropertyFilter(MatchType.ACLPREFIXS, "aclCode", aclCodePrefixs));
+            }
+            Integer authUserAclType = AuthContextHolder.getAuthUserDetails().getAclType();
+            if (authUserAclType != null) {
+                groupFilter.and(new PropertyFilter(MatchType.LE, "aclType", authUserAclType));
+            }
+        }        
         Pageable pageable = PropertyFilter.buildPageableFromHttpRequest(getRequest());
         Page<User> page = this.getEntityService().findByPage(groupFilter, pageable);
         if (aclService != null) {
@@ -236,5 +241,5 @@ public class UserController extends BaseController<User, String> {
     public HttpHeaders revisionCompare() {
         return super.revisionCompare();
     }
-    
+
 }
