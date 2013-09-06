@@ -4,7 +4,9 @@ import java.io.BufferedWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import lab.s2jh.core.context.SpringContextHolder;
 import lab.s2jh.schedule.entity.JobRunHist;
+import lab.s2jh.schedule.service.JobRunHistService;
 
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -20,7 +22,7 @@ public class ExtLoggingJobHistoryPlugin extends LoggingJobHistoryPlugin {
     @Override
     public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) {
         super.jobWasExecuted(context, jobException);
-        //ScheduleJobRunHistService scheduleJobRunHistService = (ScheduleJobRunHistService) SpringContextHolder.getBean(ScheduleJobRunHistService.class);
+        JobRunHistService jobRunHistService = (JobRunHistService) SpringContextHolder.getBean(JobRunHistService.class);
         Trigger trigger = context.getTrigger();
         JobRunHist jobRunHist=new JobRunHist();
         jobRunHist.setTriggerGroup(trigger.getGroup());
@@ -50,7 +52,7 @@ public class ExtLoggingJobHistoryPlugin extends LoggingJobHistoryPlugin {
                 jobRunHist.setResult(result);
             }
         }
-        //scheduleJobRunHistService.insertHistLog(jobRunHist);
+        jobRunHistService.saveWithAsyncAndNewTransition(jobRunHist);
     }
 
 }

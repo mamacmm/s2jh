@@ -272,6 +272,7 @@ public class MenuService extends BaseService<Menu, String> {
     @Override
     public Menu save(Menu entity) {
         if (entity.isNew()) {
+            //同步自动创建的对应权限数据
             String url = entity.getUrl();
             if (StringUtils.isNotBlank(url) && url.startsWith("/")) {
                 if (privilegeService.findByProperty("url", url) == null) {
@@ -291,6 +292,7 @@ public class MenuService extends BaseService<Menu, String> {
 
     @Override
     public void delete(Menu entity) {
+        //同步清理自动创建的对应权限数据
         String url = entity.getUrl();
         if (StringUtils.isNotBlank(url)) {
             Privilege privilege = privilegeService.findByProperty("url", url);

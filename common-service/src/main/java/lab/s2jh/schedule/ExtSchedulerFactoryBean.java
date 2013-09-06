@@ -1,6 +1,8 @@
 package lab.s2jh.schedule;
 
-import org.quartz.Scheduler;
+import lab.s2jh.schedule.service.JobBeanCfgService;
+
+import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -12,10 +14,14 @@ public class ExtSchedulerFactoryBean extends SchedulerFactoryBean {
 
     private static Logger logger = LoggerFactory.getLogger(ExtSchedulerFactoryBean.class);
 
+    private JobBeanCfgService jobBeanCfgService;
 
-    public Scheduler getScheduler(){
-        return (Scheduler) this.getObject();
+    public void setJobBeanCfgService(JobBeanCfgService jobBeanCfgService) {
+        this.jobBeanCfgService = jobBeanCfgService;
     }
 
+    protected void registerJobsAndTriggers() throws SchedulerException {
+        logger.debug("Invoking registerJobsAndTriggers...");
+    }
 
 }

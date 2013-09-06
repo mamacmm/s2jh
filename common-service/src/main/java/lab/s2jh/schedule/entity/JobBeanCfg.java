@@ -29,6 +29,8 @@ public class JobBeanCfg extends BaseEntity<String> {
     private String cronExpression;
     /** 自动初始运行 */
     private Boolean autoStartup;
+    /** 启用运行历史记录 */
+    private Boolean logRunHist;
     /** 描述 */
     private String description;
 
