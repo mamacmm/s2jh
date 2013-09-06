@@ -167,9 +167,6 @@
 			<jdbc:script location="classpath:sql/data/t_sys_pub_post.sql"
 				encoding="UTF-8" />
 
-			<jdbc:script location="classpath:sql/data/t_sys_pub_post.sql"
-				encoding="UTF-8" />
-
 			<jdbc:script location="classpath:sql/data/sys_enum_type.sql"
 				encoding="UTF-8" />
 			<jdbc:script location="classpath:sql/data/sys_enum_value.sql"
