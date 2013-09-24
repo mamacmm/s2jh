@@ -7,23 +7,24 @@
 </head>
 <body>
     <div class="container-fluid">
-        <s2:tabbedpanel id="${entity_name_uncapitalize}IndexTabs">
+        <s2:tabbedpanel id="jobBeanCfgIndexTabs">
             <ul>
-                <li><a href="#${entity_name_uncapitalize}IndexListTab"><span>列表查询</span></a></li>
+                <li><a href="#jobBeanCfgIndexListTab"><span>可配置任务列表</span></a></li>
+                <li><a href="${base}/schedule/job-bean-cfg!forward?_to_=triggers"><span>任务动态管理</span></a></li>
             </ul>
-            <div id="${entity_name_uncapitalize}IndexListTab">
+            <div id="jobBeanCfgIndexListTab">
                 <div class="row-fluid">
                     <div class="toolbar">
                         <div class="toolbar-inner">
-                            <button type="button" class="btn" id="${entity_name_uncapitalize}AddBtn">
+                            <button type="button" class="btn" id="jobBeanCfgAddBtn">
                                 <i class="icon-plus-sign"></i> 添加
                             </button>
-                            <button type="button" class="btn" id="${entity_name_uncapitalize}DeleteBtn">
+                            <button type="button" class="btn" id="jobBeanCfgDeleteBtn">
                                 <i class="icon-trash"></i> 删除
                             </button>
                             <div class="btn-group pull-right">
                                 <button type="button" class="btn" title="高级查询"
-                                    onclick="$('#${entity_name_uncapitalize}ListDiv').jqGrid('advSearch');">
+                                    onclick="$('#jobBeanCfgListDiv').jqGrid('advSearch');">
                                     <i class="icon-search"></i>
                                 </button>
                             </div>                            
@@ -31,8 +32,8 @@
                     </div>
                 </div>
                 <div class="row-fluid">
-                    <table id="${entity_name_uncapitalize}ListDiv"></table>
-                    <div id="${entity_name_uncapitalize}ListDivPager"></div>
+                    <table id="jobBeanCfgListDiv"></table>
+                    <div id="jobBeanCfgListDivPager"></div>
                 </div>
             </div>
         </s2:tabbedpanel>
@@ -40,9 +41,9 @@
 	<%@ include file="/common/index-footer.jsp"%>
     <script type="text/javascript">
         $(function() {
-            $("#${entity_name_uncapitalize}ListDiv").grid({
-                url: '${base}${model_path}/${entity_name_field}!findByPage',
-                colNames : [ '操作',<#list entityFields as entityField><#if entityField.list><#if entityField_index != 0>,</#if>'${entityField.title}'</#if></#list>,'创建时间','版本号'],
+            $("#jobBeanCfgListDiv").grid({
+                url: '${base}/schedule/job-bean-cfg!findByPage',
+                colNames : [ '操作','任务类全名','CRON表达式','自动初始运行','启用历史记录','集群运行模式','创建时间','版本号'],
                 colModel : [ {
                     name : 'operation',
                     align : 'center',
@@ -59,34 +60,31 @@
                         }, {
                             title : "查看",
                             icon : "icon-book",
-                            onclick : "$.popupViewDialog('${base}${model_path}/${entity_name_field}!viewTabs?id=" + options.rowId + "')"
+                            onclick : "$.popupViewDialog('${base}/schedule/job-bean-cfg!viewTabs?id=" + options.rowId + "')"
                         } ]);
                     }                 
-                <#list entityFields as entityField> 
-                <#if entityField.list>                      
                 }, {
-                    name : '${entityField.fieldName}',
-                <#if entityField.listWidth!=0>  
-                    width : ${entityField.listWidth},
-                </#if>
-                <#if entityField.listFixed>
+                    name : 'jobClass',
+                    align : 'left'
+                }, {
+                    name : 'cronExpression',
+                    width : 120,
+                    align : 'right'  
+                }, {
+                    name : 'autoStartup',
                     fixed : true,
-                </#if>                  
-                <#if entityField.listHidden>    
-                    hidden : true,
-                </#if>  
-                <#if entityField.fieldType=='Boolean'>          
                     formatter : booleanFormatter,
-                </#if>  
-                <#if entityField.fieldType=='Date'>          
-                    sorttype: 'date',
-                </#if>
-                <#if entityField.fieldType=='BigDecimal'>          
-                    sorttype: 'number',
-                </#if>                                                                       
-                    align : '${entityField.listAlign}'
-                </#if>
-                </#list>
+                    align : 'center'
+                }, {
+                    name : 'logRunHist',
+                    fixed : true,
+                    formatter : booleanFormatter,
+                    align : 'center'
+                }, {
+                    name : 'runWithinCluster',
+                    fixed : true,
+                    formatter : booleanFormatter,
+                    align : 'center'                    
                 }, {
                    name : 'createdDate',
                    width : 120,
@@ -99,24 +97,24 @@
                    hidedlg : true
                 } ],
                 delRow : {
-                    url : "${base}${model_path}/${entity_name_field}!doDelete"
+                    url : "${base}/schedule/job-bean-cfg!doDelete"
                 },
                 addRow : {
-                    url : "${base}${model_path}/${entity_name_field}!inputTabs"
+                    url : "${base}/schedule/job-bean-cfg!inputTabs"
                 },
                 editRow : {
-                    url : "${base}${model_path}/${entity_name_field}!inputTabs",
-                    labelCol : 'TODO'
+                    url : "${base}/schedule/job-bean-cfg!inputTabs",
+                    labelCol : 'jobClass'
                 },                
-                caption:"${model_title}列表"
+                caption:"定时任务配置列表"
             }); 
             
-            $("#${entity_name_uncapitalize}AddBtn").click(function() {
-                $("#${entity_name_uncapitalize}ListDiv").jqGrid('addRow');
+            $("#jobBeanCfgAddBtn").click(function() {
+                $("#jobBeanCfgListDiv").jqGrid('addRow');
             });
             
-            $("#${entity_name_uncapitalize}DeleteBtn").click(function() {
-                $("#${entity_name_uncapitalize}ListDiv").jqGrid('delRow');
+            $("#jobBeanCfgDeleteBtn").click(function() {
+                $("#jobBeanCfgListDiv").jqGrid('delRow');
             });                         
          });
     </script>	

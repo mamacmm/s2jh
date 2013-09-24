@@ -104,7 +104,7 @@
                     labelCol : 'id'
                 },
                 sortorder : "desc",
-                sortname : "id",
+                sortname : "createdDate",
                 rowNum : 10,
                 caption : "日志事件列表"
             });

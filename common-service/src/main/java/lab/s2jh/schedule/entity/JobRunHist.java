@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 
 import lab.s2jh.core.annotation.MetaData;
 import lab.s2jh.core.entity.BaseEntity;
+import lab.s2jh.core.entity.annotation.EntityAutoCode;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -23,32 +24,65 @@ import org.hibernate.annotations.Type;
 /**
  * 任务计划运行历史记录
  */
-@MetaData(title = "权限")
+@MetaData(title = "定时任务运行记录")
 @Entity
 @Table(name = "T_JOB_RUN_HIST")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class JobRunHist extends BaseEntity<String> {
 
-    private static final long serialVersionUID = 555714763217288604L;
-
-    /** Job名称 */
+    @MetaData(title = "Job名称")
+    @EntityAutoCode(order = 10, listShow = false)
     private String jobName;
-    /** Job分组 */
+
+    @MetaData(title = "Job分组")
+    @EntityAutoCode(order = 20, listShow = false)
     private String jobGroup;
-    /** Trigger名称 */
+
+    @MetaData(title = "Job类")
+    @EntityAutoCode(order = 25)
+    private String jobClass;
+
+    @MetaData(title = "Trigger名称")
+    @EntityAutoCode(order = 30, listShow = false)
     private String triggerName;
-    /** Trigger分组 */
+
+    @MetaData(title = "Trigger分组 ")
+    @EntityAutoCode(order = 40, listShow = false)
     private String triggerGroup;
+    
+    @MetaData(title = "异常标识")
+    @EntityAutoCode(order = 90)
+    private Boolean exceptionFlag = Boolean.FALSE;
+
+    @MetaData(title = "执行结果")
+    @EntityAutoCode(order = 100)
+    private String result;
+
+    @MetaData(title = "异常日志")
+    @EntityAutoCode(order = 110, listShow = false)
+    private String exceptionStack;
 
     //以下参数具体参考官方接口文档说明：
     //org.quartz.plugins.history.LoggingJobHistoryPlugin.LoggingJobHistoryPlugin#jobWasExecuted(JobExecutionContext context, JobExecutionException jobException)
+    @MetaData(title = "本次触发时间")
+    @EntityAutoCode(order = 50)
     private Date fireTime;
+
+    @EntityAutoCode(order = 60)
+    @MetaData(title = "上次触发时间")
     private Date previousFireTime;
+
+    @EntityAutoCode(order = 70)
+    @MetaData(title = "下次触发时间")
     private Date nextFireTime;
+
+    @MetaData(title = "触发次数")
+    @EntityAutoCode(order = 80)
     private Integer refireCount;
-    private Boolean exceptionFlag = Boolean.FALSE;
-    private String result;
-    private String exceptionStack;
+    
+    @MetaData(title = "触发节点标识")
+    @EntityAutoCode(order = 100)
+    private String nodeId;
 
     private String id;
 
@@ -165,6 +199,23 @@ public class JobRunHist extends BaseEntity<String> {
     @Override
     @Transient
     public String getDisplayLabel() {
-        return jobName;
+        return jobClass;
+    }
+
+    @Column(length = 512, nullable = true)
+    public String getJobClass() {
+        return jobClass;
+    }
+
+    public void setJobClass(String jobClass) {
+        this.jobClass = jobClass;
+    }
+
+    public String getNodeId() {
+        return nodeId;
+    }
+
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
     }
 }

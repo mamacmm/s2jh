@@ -41,8 +41,11 @@ public class ExtSlf4jSpyLogDelegator extends Slf4jSpyLogDelegator {
     }
 
     public String sqlOccured(Spy spy, String methodCall, String sql) {
-        if(sql.indexOf("TRIGGERS"))
-        return "";
+        //忽略频繁执行的Quartz SQL语句
+        if (sql.indexOf("QRTZ_") > -1) {
+            return "";
+        }
+        return super.sqlOccured(spy, methodCall, sql);
     }
 
     /**

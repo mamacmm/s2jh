@@ -51,6 +51,9 @@
 
 		<jdbc:initialize-database data-source="dataSource"
 			ignore-failures="ALL" enabled="${jdbc.initialize.database.enable}">
+            <jdbc:script location="classpath*:sql/ddl/quartz/tables_h2.sql"
+                encoding="UTF-8" />
+                			
             <jdbc:script location="classpath:sql/data/t_sys_data_dict.sql"
                 encoding="UTF-8" />
 			<jdbc:script location="classpath:sql/data/t_sys_menu.sql"
@@ -71,6 +74,9 @@
 
 			<jdbc:script location="classpath:sql/data/t_sys_pub_post.sql"
 				encoding="UTF-8" />
+				
+            <jdbc:script location="classpath:sql/data/t_job_bean_cfg.sql"
+                encoding="UTF-8" />				
 
 			<jdbc:script location="classpath:sql/data/sys_enum_type.sql"
 				encoding="UTF-8" />
@@ -180,6 +186,9 @@
 				encoding="UTF-8" />
 			<jdbc:script location="classpath:sql/data/biz_xs_jbxx.sql"
 				encoding="UTF-8" />
+				
+			<jdbc:script location="classpath:sql/data/t_job_bean_cfg.sql"
+                encoding="UTF-8" />
 		</jdbc:initialize-database>
 	</beans>
 

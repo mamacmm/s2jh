@@ -3,9 +3,14 @@ package lab.s2jh.schedule;
 import java.io.BufferedWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Set;
 
 import lab.s2jh.core.context.SpringContextHolder;
+import lab.s2jh.schedule.entity.JobBeanCfg;
 import lab.s2jh.schedule.entity.JobRunHist;
+import lab.s2jh.schedule.service.JobBeanCfgService;
 import lab.s2jh.schedule.service.JobRunHistService;
 
 import org.quartz.JobExecutionContext;
@@ -13,20 +18,43 @@ import org.quartz.JobExecutionException;
 import org.quartz.Trigger;
 import org.quartz.plugins.history.LoggingJobHistoryPlugin;
 
+import com.google.common.collect.Sets;
+
 /**
  * 扩展实现LoggingJobHistoryPlugin约定接口
  * 转换Quartz提供的相关接口数据为ScheduleJobRunHist对象并调用对应的Service接口把数据写入数据库表中
  */
 public class ExtLoggingJobHistoryPlugin extends LoggingJobHistoryPlugin {
 
+    public static Set<Trigger> UNCONFIG_TRIGGERS = Sets.newHashSet();
+
     @Override
     public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) {
         super.jobWasExecuted(context, jobException);
-        JobRunHistService jobRunHistService = (JobRunHistService) SpringContextHolder.getBean(JobRunHistService.class);
+
         Trigger trigger = context.getTrigger();
-        JobRunHist jobRunHist=new JobRunHist();
+        if (!UNCONFIG_TRIGGERS.contains(trigger)) {
+            JobBeanCfgService jobBeanCfgService = SpringContextHolder.getBean(JobBeanCfgService.class);
+            JobBeanCfg jobBeanCfg = jobBeanCfgService.findByJobClass(trigger.getJobName());
+            if (jobBeanCfg == null) {
+                UNCONFIG_TRIGGERS.add(trigger);
+            } else {
+                if (!jobBeanCfg.getLogRunHist()) {
+                    return;
+                }
+            }
+        }
+        
+        JobRunHistService jobRunHistService = SpringContextHolder.getBean(JobRunHistService.class);
+        JobRunHist jobRunHist = new JobRunHist();
+        try {
+            jobRunHist.setNodeId(InetAddress.getLocalHost().toString());
+        } catch (UnknownHostException e) {
+            jobRunHist.setNodeId("U/A");
+        }
         jobRunHist.setTriggerGroup(trigger.getGroup());
         jobRunHist.setTriggerName(trigger.getName());
+        jobRunHist.setJobClass(context.getJobDetail().getJobClass().getName());
         jobRunHist.setJobName(context.getJobDetail().getName());
         jobRunHist.setJobGroup(context.getJobDetail().getGroup());
         jobRunHist.setFireTime(new java.util.Date());
@@ -45,9 +73,9 @@ public class ExtLoggingJobHistoryPlugin extends LoggingJobHistoryPlugin {
             jobRunHist.setExceptionStack(exceptionStack);
         } else {
             jobRunHist.setExceptionFlag(Boolean.FALSE);
-            if(context.getResult()==null){
+            if (context.getResult() == null) {
                 jobRunHist.setResult("SUCCESS");
-            }else{
+            } else {
                 String result = String.valueOf(context.getResult());
                 jobRunHist.setResult(result);
             }

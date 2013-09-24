@@ -7,31 +7,42 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lab.s2jh.core.annotation.MetaData;
 import lab.s2jh.core.entity.BaseEntity;
+import lab.s2jh.core.entity.annotation.EntityAutoCode;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
-/**
- * 任务计划的数据库配置记录
- */
+@MetaData(title = "定时任务配置")
 @Entity
 @Table(name = "T_JOB_BEAN_CFG")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class JobBeanCfg extends BaseEntity<String> {
 
-    private static final long serialVersionUID = 5278478312111449372L;
-
-    /** 实现QuartzJobBean的类全路径类名 */
+    @MetaData(title = "任务类全名", description = "实现QuartzJobBean的类全路径类名 ")
+    @EntityAutoCode(order = 5)
     private String jobClass;
-    /** 定时表达式，基于CRON语法 */
+
+    @MetaData(title = "CRON表达式", description = "定时表达式，基于CRON语法")
+    @EntityAutoCode(order = 10)
     private String cronExpression;
-    /** 自动初始运行 */
+
+    @MetaData(title = "自动初始运行")
+    @EntityAutoCode(order = 20)
     private Boolean autoStartup;
-    /** 启用运行历史记录 */
+
+    @MetaData(title = "启用运行记录",description="每次运行会写入历史记录表，对于运行频率很高或业务监控意义不大的任务建议关闭")
+    @EntityAutoCode(order = 30)
     private Boolean logRunHist;
-    /** 描述 */
+    
+    @MetaData(title = "集群运行模式",description="如果为true，则在一组集群部署环境中同一任务只会在一个节点触发；否则在每个节点各自独立运行")
+    @EntityAutoCode(order = 40)
+    private Boolean runWithinCluster;
+
+    @MetaData(title = "描述")
+    @EntityAutoCode(order = 50, listShow = false)
     private String description;
 
     private String id;
@@ -87,5 +98,21 @@ public class JobBeanCfg extends BaseEntity<String> {
     @Transient
     public String getDisplayLabel() {
         return jobClass + ":" + cronExpression;
+    }
+
+    public Boolean getLogRunHist() {
+        return logRunHist;
+    }
+
+    public void setLogRunHist(Boolean logRunHist) {
+        this.logRunHist = logRunHist;
+    }
+
+    public Boolean getRunWithinCluster() {
+        return runWithinCluster;
+    }
+
+    public void setRunWithinCluster(Boolean runWithinCluster) {
+        this.runWithinCluster = runWithinCluster;
     }
 }
