@@ -51,9 +51,10 @@
 
 		<jdbc:initialize-database data-source="dataSource"
 			ignore-failures="ALL" enabled="${jdbc.initialize.database.enable}">
+
             <jdbc:script location="classpath*:sql/ddl/quartz/tables_h2.sql"
                 encoding="UTF-8" />
-                			
+
             <jdbc:script location="classpath:sql/data/t_sys_data_dict.sql"
                 encoding="UTF-8" />
 			<jdbc:script location="classpath:sql/data/t_sys_menu.sql"
@@ -70,6 +71,9 @@
 			<jdbc:script location="classpath:sql/data/t_rpt_report_def.sql"
 				encoding="UTF-8" />
 			<jdbc:script location="classpath:sql/data/t_rpt_report_param.sql"
+				encoding="UTF-8" />
+
+			<jdbc:script location="classpath:sql/data/t_sys_pub_post.sql"
 				encoding="UTF-8" />
 
 			<jdbc:script location="classpath:sql/data/t_sys_pub_post.sql"
@@ -168,6 +172,9 @@
 			<jdbc:script location="classpath:sql/data/t_rpt_report_def.sql"
 				encoding="UTF-8" />
 			<jdbc:script location="classpath:sql/data/t_rpt_report_param.sql"
+				encoding="UTF-8" />
+
+			<jdbc:script location="classpath:sql/data/t_sys_pub_post.sql"
 				encoding="UTF-8" />
 
 			<jdbc:script location="classpath:sql/data/t_sys_pub_post.sql"

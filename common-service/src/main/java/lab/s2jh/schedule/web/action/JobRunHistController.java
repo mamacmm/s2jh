@@ -3,7 +3,6 @@ package lab.s2jh.schedule.web.action;
 import lab.s2jh.core.annotation.MetaData;
 import lab.s2jh.core.service.BaseService;
 import lab.s2jh.core.web.BaseController;
-import lab.s2jh.core.web.view.OperationResult;
 import lab.s2jh.schedule.entity.JobRunHist;
 import lab.s2jh.schedule.service.JobRunHistService;
 
@@ -23,28 +22,9 @@ public class JobRunHistController extends BaseController<JobRunHist,String> {
     
     @Override
     protected void checkEntityAclPermission(JobRunHist entity) {
-        // TODO Add acl check code logic
-    }
-
-    @MetaData(title = "[TODO方法作用]")
-    public HttpHeaders todo() {
-        //TODO
-        setModel(OperationResult.buildSuccessResult("TODO操作完成"));
-        return buildDefaultHttpHeaders();
+        // Nothing to do
     }
     
-    @Override
-    @MetaData(title = "创建")
-    public HttpHeaders doCreate() {
-        return super.doCreate();
-    }
-
-    @Override
-    @MetaData(title = "更新")
-    public HttpHeaders doUpdate() {
-        return super.doUpdate();
-    }
-
     @Override
     @MetaData(title = "删除")
     public HttpHeaders doDelete() {

@@ -12,7 +12,7 @@ public class ServerStatJob extends BaseQuartzJobBean {
 
     @Override
     protected void executeInternalBiz(JobExecutionContext context) {
-        logger.debug("Stat current server information, such as CPU, Memery...");
+        logger.debug("Just Mock: Stat current server information, such as CPU, Memery...");
     }
 
 }

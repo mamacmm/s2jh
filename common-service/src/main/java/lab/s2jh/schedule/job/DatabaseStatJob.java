@@ -12,7 +12,7 @@ public class DatabaseStatJob extends BaseQuartzJobBean {
 
     @Override
     protected void executeInternalBiz(JobExecutionContext context) {
-        logger.debug("Stat database information running with Spring Quartz cluster mode...");
+        logger.debug("Just Mock: Stat database information running with Spring Quartz cluster mode...");
     }
 
 }

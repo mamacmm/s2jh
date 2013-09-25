@@ -48,7 +48,7 @@ public class JobBeanCfgController extends BaseController<JobBeanCfg, String> {
 
     @Override
     protected void checkEntityAclPermission(JobBeanCfg entity) {
-        // TODO Add acl check code logic
+        // Nothing to do
     }
 
     @Override
