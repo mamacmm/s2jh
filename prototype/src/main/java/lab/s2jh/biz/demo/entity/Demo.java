@@ -26,8 +26,9 @@ import org.hibernate.annotations.GenericGenerator;
 @MetaData(value = "演示实体")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Demo extends BaseEntity<String> {
+	private static final long serialVersionUID = -1746339204317029728L;
 
-    @MetaData(value = "代码")
+	@MetaData(value = "代码")
     @EntityAutoCode
     private String code;
 

@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
+@SuppressWarnings("all")
 @ContextConfiguration(locations = { "classpath*:/service/spring-bpm.xml" })
 public class ProcessTestS2jhBpmUt extends SpringTransactionalTestCase {
 

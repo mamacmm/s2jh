@@ -8,6 +8,7 @@ import com.gargoylesoftware.htmlunit.WebResponse;
 /**
  * Add Cache-Control header info process for htmlunit cache
  */
+@SuppressWarnings("all")
 public class ExtHtmlunitCache extends Cache {
 
     protected boolean isDynamicContent(final WebResponse response) {

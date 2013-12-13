@@ -47,9 +47,9 @@ import freemarker.template.Template;
  * 
  * 模板文件位置：project-tools\src\main\resources\lab\s2jh\tool\builder\freemarker，可自行根据项目需要调整模板定义格式
  */
+@SuppressWarnings("all")
 public class SourceCodeFrameworkBuilder {
 
-    @SuppressWarnings({ "resource", "rawtypes", "unchecked" })
     public static void main(String[] args) throws Exception {
         Configuration cfg = new Configuration();
         // 设置FreeMarker的模版文件位置

@@ -33,6 +33,7 @@ import org.springframework.util.Assert;
 
 import com.opensymphony.xwork2.ModelDriven;
 
+@SuppressWarnings("all")
 public class BpmTaskController extends RestActionSupport implements ModelDriven<Object> {
 
     private final static String DYNA_FORM_KEY = "/bpm/bpm-task!dynaForm";

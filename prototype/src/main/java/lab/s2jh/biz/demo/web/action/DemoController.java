@@ -10,6 +10,7 @@ import lab.s2jh.core.web.view.OperationResult;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@SuppressWarnings("all")
 @MetaData(value = "[TODO控制器名称]")
 public class DemoController extends BaseController<Demo,String> {
 
