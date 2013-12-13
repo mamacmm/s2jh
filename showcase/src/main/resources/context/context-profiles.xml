@@ -26,7 +26,7 @@
 		<!-- H2文件模式数据库 -->
 		<bean id="dataSourceSpied"
 			class="org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean">
-			<property name="databaseName" value="c:\\h2\\showcase" />
+			<property name="databaseName" value="I:\\h2\\showcase" />
 			<property name="databaseConfigurer">
 				<bean
 					class="org.springframework.jdbc.datasource.embedded.H2EmbeddedFileDatabaseConfigurer"
