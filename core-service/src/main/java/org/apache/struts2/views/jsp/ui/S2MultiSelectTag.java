@@ -31,6 +31,7 @@ import org.apache.struts2.components.UIBean;
  * 用户也可点击右侧展开成多选形式方便选择多选项OR查询
  * 示例：<s2:multiselect cssClass="input-medium" name="search['IN_type']" list="#application.menuTypeEnumMap" />
  */
+@SuppressWarnings("all")
 public class S2MultiSelectTag extends SelectTag {
 
     protected void populateParams() {

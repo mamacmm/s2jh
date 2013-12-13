@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 扩展标准的s:date标签，生成Bootstrap样式的日期显示
  * 在format标准支持上添加date和timestamp两种内置转换处理
  */
+@SuppressWarnings("all")
 public class S2DateTag extends DateTag {
     
     private static final Logger LOG = LoggerFactory.getLogger(S2DateTag.class);

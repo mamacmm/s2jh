@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
+@SuppressWarnings("all")
 @MetaData(value = "报表定义管理")
 public class ReportDefController extends BaseController<ReportDef, String> {
 

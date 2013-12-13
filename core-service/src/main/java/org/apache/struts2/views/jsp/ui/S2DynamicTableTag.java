@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 /**
  * 针对类似批量订单行项编辑业务场景,提供一个动态表格组件,实现基础的表格行项元素动态增减处理
  */
+@SuppressWarnings("all")
 public class S2DynamicTableTag extends AbstractClosingTag {
 
     /** 可选参数，默认值为1：控制删除剩余最少行项数 */

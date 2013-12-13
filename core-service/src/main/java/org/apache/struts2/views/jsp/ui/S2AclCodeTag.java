@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.struts2.components.UIBean;
 
+@SuppressWarnings("all")
 public class S2AclCodeTag extends TextFieldTag {
 
     protected String validator;

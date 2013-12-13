@@ -33,6 +33,7 @@ import org.apache.struts2.components.Select;
  * 从而使用户可以更高效便捷的定位选取下拉行项
  * 示例： <s2:comboselect name="mzm" label="民族" list="%{findEnumValuesByType('ZD_GB_MZM')}"/>
  */
+@SuppressWarnings("all")
 public class S2ComboSelectTag extends SelectTag {
 
     /** 

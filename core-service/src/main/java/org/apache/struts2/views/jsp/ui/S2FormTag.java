@@ -9,6 +9,7 @@ import org.apache.struts2.components.UIBean;
 /**
  * 提供一个扩展form标签，如果没有提供id属性值则以随机生成id值从而避免相同id冲突问题
  */
+@SuppressWarnings("all")
 public class S2FormTag extends FormTag {
 
     /**

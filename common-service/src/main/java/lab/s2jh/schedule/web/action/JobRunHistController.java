@@ -11,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @MetaData(value = "定时任务运行记录")
 public class JobRunHistController extends BaseController<JobRunHist,String> {
-
-    @Autowired
+	private static final long serialVersionUID = -109524159489726949L;
+	
+	@Autowired
     private JobRunHistService jobRunHistService;
 
     @Override

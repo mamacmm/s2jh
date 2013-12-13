@@ -17,6 +17,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
 /**
  * 扩展标准的s:property标签，生成Bootstrap样式的属性数据显示
  */
+@SuppressWarnings("all")
 public class S2PropertyTag extends PropertyTag {
 
     private static final Logger LOG = LoggerFactory.getLogger(S2PropertyTag.class);

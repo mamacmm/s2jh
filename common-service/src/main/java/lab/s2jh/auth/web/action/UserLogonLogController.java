@@ -9,6 +9,7 @@ import lab.s2jh.core.web.BaseController;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@SuppressWarnings("all")
 @MetaData(value = "登录记录")
 public class UserLogonLogController extends BaseController<UserLogonLog, String> {
 

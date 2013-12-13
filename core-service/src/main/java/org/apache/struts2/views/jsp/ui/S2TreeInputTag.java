@@ -33,6 +33,7 @@ import org.apache.struts2.components.UIBean;
  * 示例：<s2:treeinput name="parentName" label="父节点" hiddenName="parentId" 
            treeDataUrl="/sys/menu!list" readonly="true" value="%{parent.title}" hiddenValue="%{parent.id}" />
  */
+@SuppressWarnings("all")
 public class S2TreeInputTag extends TextFieldTag {
 
 	/** 

@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  *    <i class="icon-check"></i> 提交审批
  * </s2:button>
  */
+@SuppressWarnings("all")
 public class S2ButtonTag extends AbstractClosingTag {
 
     /** 基于HTML Button元素的type类型属性定义：button、reset、submit */

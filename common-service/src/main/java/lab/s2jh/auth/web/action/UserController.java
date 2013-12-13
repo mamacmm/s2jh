@@ -42,6 +42,7 @@ import org.springframework.util.CollectionUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 public class UserController extends BaseController<User, Long> {
 
 	@Autowired

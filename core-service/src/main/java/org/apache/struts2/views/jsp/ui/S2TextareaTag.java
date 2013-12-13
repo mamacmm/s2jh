@@ -8,6 +8,7 @@ import org.apache.struts2.components.UIBean;
  * 扩展标准的textarea标签，提供自动化数据校验处理支持
  * 及其他如样式等默认值定义
  */
+@SuppressWarnings("all")
 public class S2TextareaTag extends TextareaTag {
     
     /** 

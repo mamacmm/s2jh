@@ -10,6 +10,7 @@ import org.apache.struts2.components.UIBean;
 /**
  * 基于JQuery UI AutoComplete封装自动输入提示完成组件
  */
+@SuppressWarnings("all")
 public class S2AutocompleteTextFieldTag extends TextFieldTag {
 
     /** JQuery UI AutoComplete对应属性: 触发AJAX数据请求的最小字符长度 */

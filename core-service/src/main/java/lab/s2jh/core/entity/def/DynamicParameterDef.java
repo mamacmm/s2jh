@@ -13,6 +13,7 @@ import lab.s2jh.core.entity.annotation.EntityAutoCode;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+@SuppressWarnings("all")
 @MappedSuperclass
 public abstract class DynamicParameterDef extends BaseEntity<String> {
 

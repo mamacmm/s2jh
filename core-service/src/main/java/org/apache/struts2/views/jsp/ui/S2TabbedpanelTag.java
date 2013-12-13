@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 基于JQuery UI Tabs组件的标签封装
  * 示例：<s2:tabbedpanel id="privilegeIndexTabs"><ul><li>..</li></ul><div>...</div></s2:tabbedpanel>
  */
+@SuppressWarnings("all")
 public class S2TabbedpanelTag extends AbstractClosingTag {
 
     /**

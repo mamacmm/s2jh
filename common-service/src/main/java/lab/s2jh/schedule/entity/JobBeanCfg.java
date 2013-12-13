@@ -21,8 +21,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "tbl_JOB_BEAN_CFG")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class JobBeanCfg extends BaseEntity<String> {
+	private static final long serialVersionUID = 5893262387489881752L;
 
-    @MetaData(value = "任务类全名", description = "实现QuartzJobBean的类全路径类名 ")
+	@MetaData(value = "任务类全名", description = "实现QuartzJobBean的类全路径类名 ")
     @EntityAutoCode(order = 5)
     private String jobClass;
 

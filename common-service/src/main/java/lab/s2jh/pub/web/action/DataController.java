@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 公共数据服务处理
  */
+@SuppressWarnings("all")
 public class DataController extends RestActionSupport {
 
     @Autowired

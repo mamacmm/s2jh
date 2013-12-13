@@ -17,6 +17,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 基于KindEditor封装的大文本录入组件标签
  * 用法示例：<s2:kindeditor name="description" label="描述" rows="3"/>
  */
+@SuppressWarnings("all")
 public class S2KindEditorTag extends TextareaTag {
 
 	/**

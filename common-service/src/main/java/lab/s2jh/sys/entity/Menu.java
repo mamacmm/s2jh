@@ -32,8 +32,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "菜单")
 public class Menu extends BaseEntity<String> implements Comparable<Menu> {
+	private static final long serialVersionUID = 841298963151382564L;
 
-    /** 用于报表菜单项计算的固定菜单代码 */
+	/** 用于报表菜单项计算的固定菜单代码 */
     public static final String MENU_CODE_RPT = "MFIXRPT";
 
     @MetaData(value = "代码")

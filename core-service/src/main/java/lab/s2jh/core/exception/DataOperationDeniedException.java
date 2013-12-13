@@ -3,6 +3,7 @@ package lab.s2jh.core.exception;
 /**
  * 数据操作无权
  */
+@SuppressWarnings("all")
 public class DataOperationDeniedException extends BaseRuntimeException{
 
     public DataOperationDeniedException() {

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 用户注册
  */
+@SuppressWarnings("all")
 public class SignupController extends BaseController<User, Long> {
 	
 	@Autowired

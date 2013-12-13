@@ -29,8 +29,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @MetaData(value = "公告阅读记录")
 public class PubPostRead extends BaseEntity<String> {
+	private static final long serialVersionUID = -8090813759620582306L;
 
-    @MetaData(value = "公告")
+	@MetaData(value = "公告")
     @EntityAutoCode(order = 10)
     private PubPost pubPost;
 

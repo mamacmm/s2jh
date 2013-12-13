@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 @MetaData(value = "公告消息显示")
 public class PubPostController extends BaseController<PubPost, String> {
 

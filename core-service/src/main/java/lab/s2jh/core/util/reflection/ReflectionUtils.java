@@ -20,6 +20,7 @@ import org.springframework.util.Assert;
  * 提供访问私有变量,获取泛型类型Class, 提取集合中元素的属性, 转换字符串到对象等Util函数.
  * 
  */
+@SuppressWarnings("all")
 public class ReflectionUtils {
 
 	private static Logger logger = LoggerFactory.getLogger(ReflectionUtils.class);
@@ -158,7 +159,6 @@ public class ReflectionUtils {
 	 * @param clazz The class to introspect
 	 * @return the first generic declaration, or Object.class if cannot be determined
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> Class<T> getSuperClassGenricType(final Class clazz) {
 		return getSuperClassGenricType(clazz, 0);
 	}
@@ -173,7 +173,6 @@ public class ReflectionUtils {
 	 * @param index the Index of the generic ddeclaration,start from 0.
 	 * @return the index generic declaration, or Object.class if cannot be determined
 	 */
-	@SuppressWarnings("unchecked")
 	public static Class getSuperClassGenricType(final Class clazz, final int index) {
 
 		Type genType = clazz.getGenericSuperclass();

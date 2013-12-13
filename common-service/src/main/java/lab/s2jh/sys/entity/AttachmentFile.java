@@ -25,8 +25,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "附件文件数据")
 public class AttachmentFile extends BaseEntity<String> implements FileDef{
+	private static final long serialVersionUID = 5840481185846953678L;
 
-    /** 附件上传文件名称 */
+	/** 附件上传文件名称 */
     private String fileRealName;
 
     /** 文件描述 */

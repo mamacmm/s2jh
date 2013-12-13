@@ -22,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("all")
 public class HttpRequestLogFilter implements Filter {
 
     private final Logger logger = LoggerFactory.getLogger(HttpRequestLogFilter.class);
@@ -36,7 +37,6 @@ public class HttpRequestLogFilter implements Filter {
         logger.debug("Invoking HttpRequestLogFilter destroy method...");
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void doFilter(ServletRequest request, ServletResponse reponse, FilterChain chain) throws IOException,
             ServletException {

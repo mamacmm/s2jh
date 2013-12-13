@@ -21,8 +21,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "logging_event_property")
 @Cache(usage = CacheConcurrencyStrategy.NONE)
 public class LoggingEventProperty implements java.io.Serializable {
-
-    private LoggingEventPropertyId id;
+	private static final long serialVersionUID = 5103524664446670859L;
+	
+	private LoggingEventPropertyId id;
     private LoggingEvent loggingEvent;
     private String mappedValue;
 

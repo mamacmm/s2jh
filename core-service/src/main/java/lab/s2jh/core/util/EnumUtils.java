@@ -7,6 +7,7 @@ import lab.s2jh.core.annotation.MetaData;
 
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 public class EnumUtils {
 
 	private static Map<Class<?>, Map<String, String>> enumDatasContainer = Maps.newHashMap();

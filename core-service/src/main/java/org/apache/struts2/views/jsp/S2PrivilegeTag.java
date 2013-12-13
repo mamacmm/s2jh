@@ -16,6 +16,7 @@ import com.google.common.collect.Sets;
  * 基于当前登录用户的权限代码集合，按照code属性和权限比较type类型，控制页面元素的显示
  * 用法示例： <s2:privilege code="P001">受控HML内容，如按钮、文本等</s2:privilege>
  */
+@SuppressWarnings("all")
 public class S2PrivilegeTag extends TagSupport {
 
     /** 权限代码，如果是多个可逗号分隔 */

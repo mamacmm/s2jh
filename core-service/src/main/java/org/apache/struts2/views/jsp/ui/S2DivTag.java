@@ -9,6 +9,7 @@ import org.apache.struts2.components.UIBean;
 /**
  * 扩展标准DIV，用法示例：<s2:div stretch="true">
  */
+@SuppressWarnings("all")
 public class S2DivTag extends DivTag {
 
 	/**

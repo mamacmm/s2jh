@@ -25,6 +25,7 @@ import com.opensymphony.xwork2.ModelDriven;
 /**
  * 全局布局处理
  */
+@SuppressWarnings("all")
 @Namespace("/")
 public class LayoutController extends RestActionSupport implements ModelDriven<Object> {
 

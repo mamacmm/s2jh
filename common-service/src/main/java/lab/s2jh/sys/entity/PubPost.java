@@ -26,8 +26,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "公告", description = "用于向应用所有用户显示的公告消息，不做用户或权限区分控制")
 public class PubPost extends BaseEntity<String> {
+	private static final long serialVersionUID = -2172295496574022906L;
 
-    @MetaData(value = "标题")
+	@MetaData(value = "标题")
     @EntityAutoCode(order = 20)
     private String htmlTitle;
 

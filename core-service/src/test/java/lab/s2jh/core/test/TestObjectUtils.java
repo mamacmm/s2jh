@@ -15,11 +15,11 @@ import org.slf4j.LoggerFactory;
 /**
  * 基于反射的用于生成测试Entity对象示例的辅助工具类
  */
+@SuppressWarnings("all")
 public class TestObjectUtils {
 
     private final static Logger logger = LoggerFactory.getLogger(TestObjectUtils.class);
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static <X> X buildMockObject(Class<X> clazz) {
         X x = null;
         try {

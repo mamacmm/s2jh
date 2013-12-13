@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 表格组件功能
  */
+@SuppressWarnings("all")
 public class GridController extends RestActionSupport {
 
     private final static Logger logger = LoggerFactory.getLogger(GridController.class);

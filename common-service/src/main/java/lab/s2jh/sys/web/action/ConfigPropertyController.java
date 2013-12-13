@@ -9,10 +9,11 @@ import lab.s2jh.sys.service.ConfigPropertyService;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@SuppressWarnings("all")
 @MetaData(value = "参数属性配置")
 public class ConfigPropertyController extends BaseController<ConfigProperty,String> {
-
-    @Autowired
+	
+	@Autowired
     private ConfigPropertyService configPropertyService;
 
     @Override

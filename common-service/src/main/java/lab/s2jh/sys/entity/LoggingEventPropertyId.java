@@ -6,8 +6,9 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class LoggingEventPropertyId implements java.io.Serializable {
-
-    private Long eventId;
+	private static final long serialVersionUID = -4017744644739487425L;
+	
+	private Long eventId;
     private String mappedKey;
 
     public LoggingEventPropertyId() {

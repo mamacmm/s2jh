@@ -42,8 +42,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @EntityListeners({ SaveUpdateAuditListener.class })
 @MetaData(value = "日志事件", description = "用于基于Logback日志DBAppender的ERROR日志数据存取")
 public class LoggingEvent extends PersistableEntity<Long> implements DefaultAuditable<String, Long> {
-
-    private Long id;
+	private static final long serialVersionUID = -5721827852734391445L;
+	
+	private Long id;
     private Long timestmp;
     private String formattedMessage;
     private String loggerName;

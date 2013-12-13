@@ -24,6 +24,7 @@ import com.opensymphony.xwork2.util.CompoundRoot;
  * 此处为ParametersInterceptor扩展添加基于Annotation注解的Skip参数设定,对于一些敏感的实体属性可添加@see ParamBindIgnore
  * 以跳过Struts的对此属性的自动绑定从而避免恶意属性值修改
  */
+@SuppressWarnings("all")
 public class ExtParametersInterceptor extends ParametersInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(BaseController.class);

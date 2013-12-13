@@ -18,6 +18,7 @@ import org.springframework.security.cas.web.CasAuthenticationEntryPoint;
 /**
  * 登录处理
  */
+@SuppressWarnings("all")
 public class SigninController extends BaseController<User, Long> {
 
 	@Autowired

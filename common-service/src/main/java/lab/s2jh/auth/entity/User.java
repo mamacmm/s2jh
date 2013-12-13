@@ -40,6 +40,7 @@ import com.google.common.collect.Lists;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Audited
 public class User extends BaseEntity<Long> {
+	private static final long serialVersionUID = -1603289047522491613L;
 
 	public final static String[] PROTECTED_USER_NAMES = new String[] { "admin", "super" };
 

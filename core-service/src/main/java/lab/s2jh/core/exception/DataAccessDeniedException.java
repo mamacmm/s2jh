@@ -3,6 +3,7 @@ package lab.s2jh.core.exception;
 /**
  * 数据访问权限不足
  */
+@SuppressWarnings("all")
 public class DataAccessDeniedException extends BaseRuntimeException{
 
 

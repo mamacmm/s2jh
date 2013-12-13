@@ -33,6 +33,7 @@ import ch.qos.logback.classic.LoggerContext;
 
 import com.opensymphony.xwork2.ModelDriven;
 
+@SuppressWarnings("all")
 @MetaData(value = "辅助功能")
 public class UtilController extends RestActionSupport implements ModelDriven<Object> {
 

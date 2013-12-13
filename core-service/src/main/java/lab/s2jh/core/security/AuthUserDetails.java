@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 /**
  * 扩展Spring Security的UserDetails对象，追加email，权限代码集合等信息
  */
+@SuppressWarnings("all")
 public class AuthUserDetails implements UserDetails {
     
     /** 全局唯一的用户标识 */

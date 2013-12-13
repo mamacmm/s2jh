@@ -26,6 +26,7 @@ import com.google.common.collect.Maps;
 /**
  * Spring容器加载“之后”的ServletContextListener
  */
+@SuppressWarnings("all")
 public class ApplicationContextPostListener implements ServletContextListener {
 
     private final Logger logger = LoggerFactory.getLogger(ApplicationContextPostListener.class);

@@ -33,6 +33,7 @@ import org.apache.struts2.components.TextField;
  * 之后把创建的AttachmentFile数据的主键和文件名称信息带回表单输入元素，业务功能Controller代码需要自行处理回传的AttachmentFile对象关联逻辑
  * 示例：<s2:singlefile name="templateFileId" labelValue="%{templateFile.fileRealName}" label="附件" value="%{templateFile.id}" />
  */
+@SuppressWarnings("all")
 public class S2SingleFileTag extends TextFieldTag {
 
     /** 

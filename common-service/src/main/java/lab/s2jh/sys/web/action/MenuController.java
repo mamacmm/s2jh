@@ -29,9 +29,10 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+@SuppressWarnings("all")
 public class MenuController extends BaseController<Menu, String> {
-
-    @Autowired
+	
+	@Autowired
     private MenuService menuService;
 
     @Override

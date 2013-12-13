@@ -15,6 +15,7 @@ import com.octo.captcha.service.captchastore.FastHashMapCaptchaStore;
 import com.octo.captcha.service.image.DefaultManageableImageCaptchaService;
 import com.octo.captcha.service.image.ImageCaptchaService;
 
+@SuppressWarnings("all")
 public class ImageCaptchaServlet extends HttpServlet implements Servlet {
 
     public static ImageCaptchaService imageCaptchaService = new DefaultManageableImageCaptchaService(new FastHashMapCaptchaStore(),

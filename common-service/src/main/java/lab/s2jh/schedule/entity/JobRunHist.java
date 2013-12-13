@@ -29,8 +29,9 @@ import org.hibernate.annotations.Type;
 @Table(name = "tbl_JOB_RUN_HIST")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class JobRunHist extends BaseEntity<String> {
+	private static final long serialVersionUID = 6626836963086758030L;
 
-    @MetaData(value = "Job名称")
+	@MetaData(value = "Job名称")
     @EntityAutoCode(order = 10, listShow = false)
     private String jobName;
 

@@ -7,6 +7,7 @@ import org.apache.struts2.components.UIBean;
 /**
  * 扩展标准的checkboxlist标签提供自动化表单数据校验处理支持
  */
+@SuppressWarnings("all")
 public class S2CheckboxListTag extends CheckboxListTag {
 
     /** 

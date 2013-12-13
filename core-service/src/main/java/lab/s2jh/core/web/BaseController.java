@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.Maps;
 import com.opensymphony.xwork2.inject.Inject;
 
+@SuppressWarnings("all")
 public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serializable> extends
 		PersistableController<T, ID> {
 

@@ -8,8 +8,9 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class LoggingEventExceptionId implements java.io.Serializable {
-
-    private Long eventId;
+	private static final long serialVersionUID = 6249534643540982556L;
+	
+	private Long eventId;
     private short i;
 
     public LoggingEventExceptionId() {

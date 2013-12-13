@@ -18,9 +18,7 @@ import org.springframework.util.Assert;
 
 import com.opensymphony.xwork2.ModelDriven;
 
-/**
- *
- */
+@SuppressWarnings("all")
 public class ProfileController extends RestActionSupport implements ModelDriven<Object> {
 
     @Autowired

@@ -24,8 +24,9 @@ import org.hibernate.annotations.GenericGenerator;
 @MetaData(value = "角色与权限关联")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class RoleR2Privilege extends BaseEntity<String> {
+	private static final long serialVersionUID = -1658911748934124958L;
 
-    /** 关联权限对象 */
+	/** 关联权限对象 */
     private Privilege privilege;
 
     /** 关联角色对象 */

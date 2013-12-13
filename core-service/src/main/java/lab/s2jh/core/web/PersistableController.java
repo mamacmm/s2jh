@@ -64,6 +64,7 @@ import com.google.common.collect.Sets;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 
+@SuppressWarnings("all")
 public abstract class PersistableController<T extends PersistableEntity<ID>, ID extends Serializable> extends
         RestActionSupport implements ModelDriven<Object>, Preparable {
 

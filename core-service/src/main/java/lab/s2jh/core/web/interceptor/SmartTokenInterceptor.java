@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ActionInvocation;
  * 扩展标准的TokenInterceptor，如果表单参数包含token才进行后续校验，否则直接跳过Token校验
  * 将当前Token搬迁到备份属性中,在前端Exception处理逻辑中,从备份属性恢复Token,从而使用户可以再次提交同一个token表单
  */
+@SuppressWarnings("all")
 public class SmartTokenInterceptor extends TokenInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(SmartTokenInterceptor.class);

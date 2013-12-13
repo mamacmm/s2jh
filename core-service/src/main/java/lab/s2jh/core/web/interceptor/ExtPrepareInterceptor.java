@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.interceptor.PrefixMethodInvocationUtil;
  * 修改标准的PrepareInterceptor: 先执行prepare再执行相关的prepareXXX方法
  * @see com.opensymphony.xwork2.interceptor.PrepareInterceptor
  */
+@SuppressWarnings("all")
 public class ExtPrepareInterceptor extends MethodFilterInterceptor {
 
     private final static String PREPARE_PREFIX = "prepare";

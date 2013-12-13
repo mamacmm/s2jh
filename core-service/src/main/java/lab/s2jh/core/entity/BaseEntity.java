@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@SuppressWarnings("all")
 @JsonInclude(Include.NON_EMPTY)
 @EntityListeners({ SaveUpdateAuditListener.class })
 @MappedSuperclass

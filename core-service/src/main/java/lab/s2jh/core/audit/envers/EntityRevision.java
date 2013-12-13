@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
+@SuppressWarnings("all")
 public class EntityRevision {
 
     /**
@@ -62,7 +63,7 @@ public class EntityRevision {
         this.revisionType = revisionType;
     }
 
-    @JsonIgnore
+	@JsonIgnore
     public List<RevEntityProperty> getRevEntityProperties() {
         List<RevEntityProperty> revEntityProperties = new ArrayList<RevEntityProperty>();
         Method[] methods = entity.getClass().getMethods();

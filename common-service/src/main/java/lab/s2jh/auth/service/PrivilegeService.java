@@ -42,6 +42,7 @@ import org.springframework.security.access.SecurityConfig;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@SuppressWarnings("all")
 @Service
 @Transactional
 public class PrivilegeService extends BaseService<Privilege, String> {

@@ -33,8 +33,9 @@ import com.google.common.collect.Lists;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "报表定义")
 public class ReportDef extends BaseEntity<String> {
+	private static final long serialVersionUID = 5526085159170002846L;
 
-    @MetaData(value = "代码")
+	@MetaData(value = "代码")
     @EntityAutoCode(order = 5, search = true)
     private String code;
 

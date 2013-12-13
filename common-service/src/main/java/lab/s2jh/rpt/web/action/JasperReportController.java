@@ -41,6 +41,7 @@ import org.springframework.util.FileCopyUtils;
 
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 public class JasperReportController extends BaseController<ReportDef, String> {
 
     private final Logger logger = LoggerFactory.getLogger(JasperReportController.class);

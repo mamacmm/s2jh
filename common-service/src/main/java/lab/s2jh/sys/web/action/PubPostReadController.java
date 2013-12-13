@@ -9,6 +9,7 @@ import lab.s2jh.sys.service.PubPostReadService;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@SuppressWarnings("all")
 @MetaData(value = "公告阅读记录")
 public class PubPostReadController extends BaseController<PubPostRead,String> {
 

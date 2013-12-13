@@ -29,6 +29,7 @@ import org.apache.struts2.components.UIBean;
 /**
  * 扩展标准的hidden标签，提供自动化数据校验处理支持
  */
+@SuppressWarnings("all")
 public class S2HiddenTag extends HiddenTag {
 
     /** 

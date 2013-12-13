@@ -24,10 +24,11 @@ import org.springframework.util.DigestUtils;
 
 import com.google.common.collect.Lists;
 
+@SuppressWarnings("all")
 @MetaData(value = "附件处理")
 public class AttachmentFileController extends BaseController<AttachmentFile, String> {
 
-    @Autowired
+	@Autowired
     private AttachmentFileService attachmentFileService;
 
     private File[] attachments;

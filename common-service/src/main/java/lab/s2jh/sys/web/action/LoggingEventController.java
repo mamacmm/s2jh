@@ -9,10 +9,11 @@ import lab.s2jh.sys.service.LoggingEventService;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@SuppressWarnings("all")
 @MetaData(value = "日志处理")
 public class LoggingEventController extends PersistableController<LoggingEvent,Long> {
 
-    @Autowired
+	@Autowired
     private LoggingEventService loggingEventService;
 
     @Override

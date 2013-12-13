@@ -24,8 +24,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "角色与权限关联")
 public class UserR2Role extends BaseEntity<String> {
+	private static final long serialVersionUID = -1154752437698957553L;
 
-    /** 关联用户对象 */
+	/** 关联用户对象 */
     private User user;
 
     /** 关联角色对象 */

@@ -1,5 +1,6 @@
 package lab.s2jh.core.web.captcha;
 
+@SuppressWarnings("all")
 public class BadCaptchaException extends RuntimeException{
 
     public BadCaptchaException(String message, Throwable e) {

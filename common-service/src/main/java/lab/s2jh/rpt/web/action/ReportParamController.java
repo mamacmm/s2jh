@@ -10,6 +10,7 @@ import lab.s2jh.rpt.service.ReportParamService;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@SuppressWarnings("all")
 @MetaData(value = "报表参数管理")
 public class ReportParamController extends BaseController<ReportParam, String> {
 

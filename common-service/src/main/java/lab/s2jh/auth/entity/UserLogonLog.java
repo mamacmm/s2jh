@@ -29,8 +29,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Cache(usage = CacheConcurrencyStrategy.NONE)
 @MetaData(value = "用户登录登出历史记录")
 public class UserLogonLog extends BaseEntity<String> {
+	private static final long serialVersionUID = -6405890948705754985L;
 
-    @MetaData(value = "登录账号")
+	@MetaData(value = "登录账号")
     @EntityAutoCode(order = 10, search = true)
     private String username;
 

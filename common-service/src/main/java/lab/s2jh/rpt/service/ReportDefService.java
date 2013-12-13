@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
+@SuppressWarnings("all")
 @Service
 @Transactional
 public class ReportDefService extends BaseService<ReportDef, String> {

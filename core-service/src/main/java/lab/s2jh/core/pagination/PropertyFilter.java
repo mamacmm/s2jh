@@ -54,6 +54,7 @@ import com.opensymphony.xwork2.conversion.impl.DateConverter;
  * Object matchValue)
  * </p>
  */
+@SuppressWarnings("all")
 public class PropertyFilter {
 
 	private static DateConverter dateConverter = new DateConverter();

@@ -24,8 +24,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "报表参数")
 public class ReportParam extends DynamicParameterDef {
+	private static final long serialVersionUID = 1576643085895882852L;
 
-    @MetaData(value = "所属报表")
+	@MetaData(value = "所属报表")
     private ReportDef reportDef;
 
     private String id;

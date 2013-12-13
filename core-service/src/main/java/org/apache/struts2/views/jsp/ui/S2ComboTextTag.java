@@ -35,6 +35,7 @@ import org.apache.struts2.components.Select;
  * 主要用在一些查询界面或常用短语、分类等属性维护
  * 示例：<s2:combotext cssClass="input-medium" list="distinctCategories" name="search['CN_category']" />
  */
+@SuppressWarnings("all")
 public class S2ComboTextTag extends SelectTag {
 
     /** 

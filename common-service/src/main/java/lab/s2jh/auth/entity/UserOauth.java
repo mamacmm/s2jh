@@ -23,7 +23,8 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "tbl_AUTH_USER_OAUTH")
 @MetaData(value = "用户绑定OAUTH认证")
 public class UserOauth extends BaseEntity<String> {
-
+	private static final long serialVersionUID = 7972236980029810626L;
+	
 	private User user;
 	private String username;
 	private String providerUid;

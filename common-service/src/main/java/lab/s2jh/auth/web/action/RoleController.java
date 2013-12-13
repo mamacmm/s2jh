@@ -29,6 +29,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 public class RoleController extends BaseController<Role, String> {
 
     @Autowired

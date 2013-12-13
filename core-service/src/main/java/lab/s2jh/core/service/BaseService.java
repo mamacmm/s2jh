@@ -48,6 +48,7 @@ import org.springframework.util.Assert;
 
 import com.google.common.collect.Lists;
 
+@SuppressWarnings("all")
 @Transactional
 public abstract class BaseService<T extends Persistable<? extends Serializable>, ID extends Serializable> {
 
@@ -62,7 +63,6 @@ public abstract class BaseService<T extends Persistable<? extends Serializable>,
     /** 子类设置具体的DAO对象实例 */
     abstract protected BaseDao<T, ID> getEntityDao();
 
-    @SuppressWarnings("unchecked")
     public BaseService() {
         super();
         // 通过反射取得Entity的Class.
@@ -182,7 +182,6 @@ public abstract class BaseService<T extends Persistable<? extends Serializable>,
         Specification<T> spec = new Specification<T>() {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-                @SuppressWarnings("rawtypes")
                 Path expression = root.get("id");
                 return expression.in(ids);
             }
@@ -227,7 +226,6 @@ public abstract class BaseService<T extends Persistable<? extends Serializable>,
         Specification<T> spec = new Specification<T>() {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-                @SuppressWarnings("rawtypes")
                 Path expression = root.get(property);
                 return builder.equal(expression, value);
             }
@@ -258,7 +256,6 @@ public abstract class BaseService<T extends Persistable<? extends Serializable>,
             @Override
             public Predicate toPredicate(Root<X> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
                 String[] names = StringUtils.split(property, ".");
-                @SuppressWarnings("rawtypes")
                 Path expression = root.get(names[0]);
                 for (int i = 1; i < names.length; i++) {
                     expression = expression.get(names[i]);
@@ -336,7 +333,6 @@ public abstract class BaseService<T extends Persistable<? extends Serializable>,
         return getEntityDao().count(spec);
     }
 
-    @SuppressWarnings("unchecked")
     private <X> Predicate buildPredicate(String propertyName, PropertyFilter filter, Root<X> root,
             CriteriaQuery<?> query, CriteriaBuilder builder) {
         Object matchValue = filter.getMatchValue();
@@ -756,7 +752,6 @@ public abstract class BaseService<T extends Persistable<? extends Serializable>,
         }
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Transactional(readOnly = true)
     public Object findEntity(Class entityClass, Serializable id) {
         return entityManager.find(entityClass, id);

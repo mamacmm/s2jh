@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.util.logging.LoggerFactory;
  * 生成基于自定义的附件文件对象的显示和下载链接
  * 示例：<s2:file value="r2File" label="关联附件"/>
  */
+@SuppressWarnings("all")
 public class S2FileTag extends ComponentTagSupport {
 
     private static final Logger LOG = LoggerFactory.getLogger(S2FileTag.class);

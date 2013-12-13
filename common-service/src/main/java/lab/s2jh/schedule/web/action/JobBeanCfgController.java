@@ -25,7 +25,8 @@ import com.google.common.collect.Maps;
 
 @MetaData(value = "定时任务配置管理")
 public class JobBeanCfgController extends BaseController<JobBeanCfg, String> {
-
+	private static final long serialVersionUID = -810565243381183302L;
+	
 	@Autowired
 	private JobBeanCfgService jobBeanCfgService;
 

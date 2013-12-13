@@ -24,8 +24,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "报表与角色关联")
 public class ReportDefR2Role extends BaseEntity<String> {
+	private static final long serialVersionUID = -5834841926587256199L;
 
-    @MetaData(value = "所属报表")
+	@MetaData(value = "所属报表")
     private ReportDef reportDef;
 
     @MetaData(value = "关联角色对象")

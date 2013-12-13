@@ -30,8 +30,9 @@ import com.google.common.collect.Lists;
 @MetaData(value = "角色")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Role extends BaseEntity<String> {
-
-    public static final String ROLE_ADMIN_CODE = "ROLE_ADMIN";
+	private static final long serialVersionUID = 8876256311549309424L;
+	
+	public static final String ROLE_ADMIN_CODE = "ROLE_ADMIN";
     public static final String ROLE_ANONYMOUSLY_CODE = "ROLE_ANONYMOUSLY";
     public static final String ROLE_PROTECTED_CODE = "ROLE_PROTECTED";
     /** 通过第三方认证过来的用户，默认赋予TBD角色，以便进行后续用户绑定等操作 */

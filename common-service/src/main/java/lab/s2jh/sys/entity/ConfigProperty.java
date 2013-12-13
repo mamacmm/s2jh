@@ -26,8 +26,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "配置属性")
 public class ConfigProperty extends BaseEntity<String> {
+	private static final long serialVersionUID = -7515107883474054007L;
 
-    @MetaData(value = "代码")
+	@MetaData(value = "代码")
     @EntityAutoCode(order = 10)
     private String propKey;
 

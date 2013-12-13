@@ -11,6 +11,7 @@ import org.apache.struts2.util.StrutsTypeConverter;
  * 对于BigDecimal默认会转换为科学计数法或位数较长
  * 定制化转化实现指定显示小数位数
  */
+@SuppressWarnings("all")
 public class BigDecimalConvert extends StrutsTypeConverter {
 
     @Override

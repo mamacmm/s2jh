@@ -20,8 +20,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "logging_event_exception")
 @Cache(usage=CacheConcurrencyStrategy.NONE)
 public class LoggingEventException implements java.io.Serializable {
-
-    private LoggingEventExceptionId id;
+	private static final long serialVersionUID = -6119799257696595125L;
+	
+	private LoggingEventExceptionId id;
     private LoggingEvent loggingEvent;
     private String traceLine;
 

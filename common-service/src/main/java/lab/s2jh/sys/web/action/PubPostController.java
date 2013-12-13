@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@SuppressWarnings("all")
 @MetaData(value = "公告管理")
 public class PubPostController extends BaseController<PubPost, String> {
 

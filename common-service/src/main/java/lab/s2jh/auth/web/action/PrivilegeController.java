@@ -44,6 +44,7 @@ import com.google.common.collect.Maps;
 import com.opensymphony.xwork2.config.entities.ActionConfig;
 import com.opensymphony.xwork2.inject.Inject;
 
+@SuppressWarnings("all")
 @MetaData(value = "权限")
 public class PrivilegeController extends BaseController<Privilege, String> {
 

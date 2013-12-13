@@ -31,8 +31,9 @@ import com.google.common.collect.Lists;
 @MetaData(value = "权限")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Privilege extends BaseEntity<String> {
+	private static final long serialVersionUID = 7730285670564636917L;
 
-    public final static String DATA_DICT_PRIVILEGE_TYPE = "PRIVILEGE_TYPE";
+	public final static String DATA_DICT_PRIVILEGE_TYPE = "PRIVILEGE_TYPE";
 
     @MetaData(value = "分类")
     @EntityAutoCode(order = 5, search = true)

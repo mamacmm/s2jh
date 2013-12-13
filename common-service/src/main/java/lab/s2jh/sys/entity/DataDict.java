@@ -24,8 +24,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @MetaData(value = "数据字典")
 public class DataDict extends BaseEntity<String> {
+	private static final long serialVersionUID = -3004524760621810735L;
 
-    /** 类别定义。分类代码对应中文描述在dataDictCategory国际化资源文件中定义。具体使用说明请参考 
+	/** 类别定义。分类代码对应中文描述在dataDictCategory国际化资源文件中定义。具体使用说明请参考 
      * {@link DataDictService#findDataDictByCategory(String)} 
      */
     @MetaData(value = "分类代码", description = "以代码方式维护数据，不要用中文")

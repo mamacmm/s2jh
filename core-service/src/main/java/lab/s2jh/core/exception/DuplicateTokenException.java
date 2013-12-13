@@ -1,5 +1,6 @@
 package lab.s2jh.core.exception;
 
+@SuppressWarnings("all")
 public class DuplicateTokenException extends BaseRuntimeException{
 
     public DuplicateTokenException(String msg) {

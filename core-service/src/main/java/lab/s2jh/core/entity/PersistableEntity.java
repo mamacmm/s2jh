@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 @MappedSuperclass
 @JsonInclude(Include.NON_NULL)
 public abstract class PersistableEntity<ID extends Serializable> implements Persistable<ID> {
