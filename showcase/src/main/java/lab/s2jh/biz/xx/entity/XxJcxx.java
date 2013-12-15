@@ -1,5 +1,7 @@
 package lab.s2jh.biz.xx.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -312,4 +314,15 @@ public class XxJcxx extends PersistableEntity<String> {
     public String getDisplay() {
         return xxdm + "/" + xxmc;
     }
+    
+    @MetaData(value = "创建时间")
+    @EntityAutoCode(listHidden = true)
+    private Date createdDate;
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+    
 }
