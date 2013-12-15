@@ -38,6 +38,18 @@ public class XxJcxxController extends BaseBizController<XxJcxx, String> {
         aclService.validateAuthUserAclCodePermission(entity.getXxdm());
     }
 
+    public HttpHeaders doCreate() {
+        return super.doCreate();
+    }
+    
+    public HttpHeaders doUpdate(){
+    	 return super.doUpdate();
+    }
+    
+    public HttpHeaders doDelete() {
+        return super.doDelete();
+    }
+    
     @Override
     @MetaData(value = "查询")
     public HttpHeaders findByPage() {
