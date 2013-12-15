@@ -20,8 +20,9 @@ import org.hibernate.annotations.GenericGenerator;
 @MetaData(value = "学校基本信息")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class XxJcxx extends PersistableEntity<String> {
+	private static final long serialVersionUID = -8620879273169643992L;
 
-    @MetaData(value = "学校识别码", description = "指由教育部按照国家标准及编码规则统一编制，赋予每一个学校（机构）在全国范围内唯一的、始终不变的识别标识码。")
+	@MetaData(value = "学校识别码", description = "指由教育部按照国家标准及编码规则统一编制，赋予每一个学校（机构）在全国范围内唯一的、始终不变的识别标识码。")
     @EntityAutoCode(order = 10, search = true)
     private String xxdm;
 
@@ -103,8 +104,16 @@ public class XxJcxx extends PersistableEntity<String> {
 
     @MetaData(value = "学校辅助信息")
     private XxFzxx xxFzxx;
+    //添加 xxFzxx 的get和set方法
+    public XxFzxx getXxFzxx() {
+		return xxFzxx;
+	}
 
-    private String id;
+	public void setXxFzxx(XxFzxx xxFzxx) {
+		this.xxFzxx = xxFzxx;
+	}
+
+	private String id;
 
     @Id
     @Column(length = 40)

@@ -25,7 +25,7 @@ import lab.s2jh.core.web.view.OperationResult;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
+@SuppressWarnings("all")
 @MetaData(value = "学籍异动(转学)")
 public class XsTransferReqController extends BaseBizController<XsTransferReq, String> {
 

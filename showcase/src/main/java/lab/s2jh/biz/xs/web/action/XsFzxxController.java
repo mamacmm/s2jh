@@ -12,7 +12,7 @@ import lab.s2jh.core.service.BaseService;
 import org.apache.struts2.rest.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
+@SuppressWarnings("all")
 @MetaData(value = "学生辅助信息")
 public class XsFzxxController extends BaseBizController<XsFzxx, String> {
 

@@ -24,8 +24,9 @@ import org.hibernate.annotations.Type;
 @MetaData(value = "学校班级")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class XxBj extends PersistableEntity<String> {
+	private static final long serialVersionUID = -8975697888722974975L;
 
-    @MetaData(value = "班号")
+	@MetaData(value = "班号")
     @EntityAutoCode(order = 10, search = true)
     private String bh;
 

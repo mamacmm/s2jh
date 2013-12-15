@@ -23,8 +23,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @MetaData(value = "学校辅助信息")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class XxFzxx extends PersistableEntity<String> {
+	private static final long serialVersionUID = 2141627608069652883L;
 
-    @MetaData(value = "对应学校代码")
+	@MetaData(value = "对应学校代码")
     private String xxdm;
 
     @MetaData(value = "对应学校")

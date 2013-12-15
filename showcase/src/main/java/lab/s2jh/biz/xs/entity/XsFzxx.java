@@ -26,8 +26,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @MetaData(value = "学生个人辅助信息")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class XsFzxx extends PersistableEntity<String> {
+	private static final long serialVersionUID = -3036865066019361520L;
 
-    private XsJbxx xsJbxx;
+	private XsJbxx xsJbxx;
 
     @MetaData(value = "学号", description = "学生在学校内编码")
     @EntityAutoCode(order = 10, search = true)

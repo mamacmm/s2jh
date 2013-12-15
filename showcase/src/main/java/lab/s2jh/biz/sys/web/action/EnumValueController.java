@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 public class EnumValueController extends BaseBizController<EnumValue, String> {
 
     @Autowired

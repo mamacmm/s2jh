@@ -21,8 +21,9 @@ import org.hibernate.annotations.Type;
 @MetaData(value = "行政区划 ")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class RegionCode extends PersistableEntity<String> {
+	private static final long serialVersionUID = 554854537296566958L;
 
-    @MetaData(value = "行政区划代码", description = "必须以ROLE_打头")
+	@MetaData(value = "行政区划代码", description = "必须以ROLE_打头")
     @EntityAutoCode(order = 10, search = true)
     private String regionCode;
 

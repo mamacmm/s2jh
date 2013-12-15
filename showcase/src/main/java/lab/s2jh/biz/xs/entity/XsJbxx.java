@@ -37,8 +37,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Audited
 public class XsJbxx extends PersistableEntity<String> {
+	private static final long serialVersionUID = -2797223819191617694L;
 
-    @MetaData(value = "学校代码", description = "学生所属学校代码")
+	@MetaData(value = "学校代码", description = "学生所属学校代码")
     @EntityAutoCode(order = 5, search = false, listShow = false)
     private String xxdm;
 

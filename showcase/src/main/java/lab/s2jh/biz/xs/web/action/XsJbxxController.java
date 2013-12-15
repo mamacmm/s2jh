@@ -28,6 +28,7 @@ import org.springframework.data.domain.Sort;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 @MetaData(value = "学生信息管理")
 public class XsJbxxController extends BaseBizController<XsJbxx, String> {
 

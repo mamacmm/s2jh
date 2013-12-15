@@ -10,6 +10,7 @@ import org.hibernate.type.StringType;
 import org.hibernate.type.descriptor.java.BooleanTypeDescriptor;
 import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
 
+@SuppressWarnings("all")
 public class BooleanStrUserType extends AbstractSingleColumnStandardBasicType<Boolean> implements
         PrimitiveType<Boolean>, DiscriminatorType<Boolean> {
 

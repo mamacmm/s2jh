@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.components.UIBean;
 
+@SuppressWarnings("all")
 public class S2XxInputTag extends TextFieldTag {
 
     protected String validator;

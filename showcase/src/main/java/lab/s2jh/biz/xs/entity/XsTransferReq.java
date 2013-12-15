@@ -40,8 +40,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Audited
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class XsTransferReq extends BaseEntity<String> implements OperationAuditable{
+	private static final long serialVersionUID = 7972475580438863519L;
 
-    @MetaData(value = "异动学生")
+	@MetaData(value = "异动学生")
     @EntityAutoCode(order = 5)
     private XsJbxx xsJbxx;
 

@@ -29,6 +29,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 @MetaData(value = "学籍管理")
 public class XsXxMgtController extends BaseBizController<XsJbxx, String> {
 

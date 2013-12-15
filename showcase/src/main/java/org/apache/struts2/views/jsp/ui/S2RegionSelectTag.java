@@ -34,6 +34,7 @@ import com.opensymphony.xwork2.util.ValueStack;
  * 行政区划选取组件
  * @see ComboSelect
  */
+@SuppressWarnings("all")
 public class S2RegionSelectTag extends SelectTag {
 
     protected String validator;

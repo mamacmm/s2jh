@@ -37,8 +37,9 @@ import org.hibernate.annotations.GenericGenerator;
 @MetaData(value = "学生信息导入中间处理表")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class XsXxImport extends PersistableEntity<String> {
+	private static final long serialVersionUID = 8375340371531859239L;
 
-    @NotNull
+	@NotNull
     @XlsMatchTitles({ "xxdm", "学校代码", "所属学校" })
     private String xxdm;
 

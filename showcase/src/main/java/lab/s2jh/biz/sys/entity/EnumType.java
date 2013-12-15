@@ -21,8 +21,9 @@ import org.hibernate.annotations.Type;
 @MetaData(value = "数据字典类型")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class EnumType extends PersistableEntity<String> {
+	private static final long serialVersionUID = 8915222070232166401L;
 
-    @MetaData(value = "枚举类型", description = "填写代码表的表名，如：XX_JBXX")
+	@MetaData(value = "枚举类型", description = "填写代码表的表名，如：XX_JBXX")
     @EntityAutoCode(order = 10, search = true)
     private String enumType;
 

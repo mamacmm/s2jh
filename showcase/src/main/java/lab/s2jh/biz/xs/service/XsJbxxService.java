@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@SuppressWarnings("all")
 @Service
 @Transactional
 public class XsJbxxService extends BaseService<XsJbxx, String> {

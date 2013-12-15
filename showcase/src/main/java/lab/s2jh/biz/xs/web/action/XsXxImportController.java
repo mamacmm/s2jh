@@ -48,6 +48,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+@SuppressWarnings("all")
 @MetaData(value = "学籍导入")
 public class XsXxImportController extends BaseBizController<XsXxImport, String> {
 

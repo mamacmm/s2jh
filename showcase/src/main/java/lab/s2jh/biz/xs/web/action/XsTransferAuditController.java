@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 @MetaData(value = "学籍异动(转学)审批")
 public class XsTransferAuditController extends BaseBizController<XsTransferReq, String> {
 

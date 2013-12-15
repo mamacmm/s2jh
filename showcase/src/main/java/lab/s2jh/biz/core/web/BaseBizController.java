@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Maps;
 
+@SuppressWarnings("all")
 public abstract class BaseBizController<T extends PersistableEntity<ID>, ID extends Serializable> extends
         PersistableController<T, ID> {
 

@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.google.common.collect.Lists;
 import com.opensymphony.xwork2.ModelDriven;
 
+@SuppressWarnings("all")
 @Namespace("/pub")
 @MetaData(value = "机构代码")
 public class AclCodeController extends RestActionSupport implements ModelDriven<Object> {
